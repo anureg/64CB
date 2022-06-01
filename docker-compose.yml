@@ -1,0 +1,13 @@
+version: '2.0'
+services:
+  chat-api:
+    image: chat-api
+    build:
+      context: .
+      dockerfile: build/Dockerfile
+    container_name: chat-api
+    ports:
+      - 8000:8000
+
+
+
