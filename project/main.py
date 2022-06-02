@@ -30,7 +30,7 @@ class outgoing_message(BaseModel):
     text: str
     context: dict
 
-from projapp.module_login import login
+from project.module_login import login
 
 app = FastAPI(
     title="Chat API",
