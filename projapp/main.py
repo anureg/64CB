@@ -30,13 +30,13 @@ class outgoing_message(BaseModel):
     text: str
     context: dict
 
+from projapp.module_login import login
 
 app = FastAPI(
     title="Chat API",
     description="Chat Backend API",
     version="0.1.0"
 )
-from projapp.module_login import login
 app.include_router(login.router)
 
 
