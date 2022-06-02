@@ -36,7 +36,7 @@ app = FastAPI(
     description="Chat Backend API",
     version="0.1.0"
 )
-from appfile.module_login import login
+from projapp.module_login import login
 app.include_router(login.router)
 
 
