@@ -36,8 +36,6 @@ app = FastAPI(
     version="0.1.0"
 )
 
-from app.module_login import login
-app.include_router(login.router)
 
 @app.get("/")
 def read_root():
