@@ -36,6 +36,9 @@ app = FastAPI(
     version="0.1.0"
 )
 
+from module_login import login
+app.include_router(login.router)
+
 @app.get("/")
 def read_root():
     return {"Hello": "Worlddddddd"}
