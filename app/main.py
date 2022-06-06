@@ -40,7 +40,7 @@ app = FastAPI(
 
 @app.get("/")
 def read_root():
-    return {"Hello": "Worlddddddd"}
+    return {"Hello": "World (ExDev)"}
 
 
 @app.post("/conversation/unit", tags=["Conversation Unit"])
