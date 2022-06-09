@@ -51,7 +51,7 @@ def welcome(device_id: str):
 @router.get("/ChatMsg")
 def chat_msg(msg: str, device_token: int, contextSend: str):
 
-    if msg == 'greeting':
+    if msg == 'ทักทาย':
         contextAns = Cardmessage(
             topic='สวัสดีครับ',
         )
