@@ -76,30 +76,6 @@ class Cardmessage(BaseModel):
     file_path: Union[str, None] = None  # file
 
 
-@app.get("/welcome")
-def root(device_id: str):
-    # Time zone in Thailand UTC+7
-    tz = timezone(timedelta(hours=7))
-    # Create a date object with given timezone
-    timestr = datetime.now(tz=tz).isoformat(sep=" ")
-    # hash(device_id + timestr)
-    token = hash(device_id + timestr)  # type token int
-
-    textWelcome = 'สวัสดี ฉันคือ บอท \nมีอะไรให้ฉันช่วยไหม'
-
-    context = Cardmessage(topic=textWelcome)
-    return {
-        "token": token,
-        "Time": timestr,
-        "context": context
-    }
-
-# welcome สวัสดี ชั้นชื่อ..
-# fallback ช่วยบอกอีกทีได้ไหม
-# case1 card1
-# case2 card2
-
-
 @app.get("/ChatMsg")
 def chat_msg(msg: str, mytoken: int, contextSend: str):
 
