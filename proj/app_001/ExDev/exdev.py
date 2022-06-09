@@ -5,11 +5,6 @@ from typing import List, Union
 
 from datetime import datetime, timezone, timedelta
 
-# welcome สวัสดี ชั้นชื่อ..
-# fallback ช่วยบอกอีกทีได้ไหม
-# case1 card1
-# case2 card2
-
 
 # context
 class Cardmessage(BaseModel):
@@ -52,58 +47,47 @@ def welcome(device_id: str):
 
 
 @router.get("/ChatMsg")
-def chat_msg(msg: str, mytoken: int, contextSend: str):
+def chat_msg(msg: str, device_token: int, contextSend: str):
 
-    if msg == 'card1':
+    if msg == 'greeting':
         contextAns = Cardmessage(
-            topic='ร้องเรียนเจ้าหน้าที่',
-            subtopic='การแจ้งข้อมูลจะต้องเป็นความจริงทุกประการ\nการใช้ข้อมูลเท็จหรือใช้ข้อมูลผู้อื่นของมาแอบอ้าง\nอาจถูกดำเนินการตามกฎหมาย',
-            buttonLink=[
-                'เข้าสู่เว็บไซต์',
-                'https://register.dsi.go.th/'
-            ],
-            image='https://www.dsi.go.th//images/banner/complaint_dsi_officer.jpg'
+            topic='สวัสดีครับ',
         )
-    elif msg == 'card2':
+    elif msg == 'ช่องทางการติดต่อ':
         contextAns = Cardmessage(
-            topic='เมนูหลัก',
+            topic='ช่องทางการติดต่อ',
             subtopic='คลิกเลือกรายการที่ต้องการ :',
             buttonText=[
-                'ช่องทางการติดต่อ',
-                'ช่องทางการติดต่อ',
-                'เมนูติดต่อ',
-                'เมนูติดต่อ',
-                'บริการ',
-                'บริการ',
-                'เมนูบริการ',
-                'เมนูบริการ',
-                'กฎหมายและระเบียบ',
-                'กฎหมายและระเบียบ',
-                'เมนูกฎหมาย',
-                'เมนูกฎหมาย',
-            ]
+                'ที่ทำการ',
+                'ที่ทำการ',
+                'โทรศัพท์',
+                'โทรศัพท์',
+                'โทรสาร',
+                'โทรสาร',
+            ],
         )
-    elif msg == 'card3':
+    elif msg == 'โทรศัพท์':
         contextAns = Cardmessage(
             topic='โทรศัพท์',
             subtopic='หมายเลข 0 2831 9888\nวันและเวลาราชการ (08.30-16.30)',
             buttonPhone=[
                 'โทรออก',
                 '028319888',
-            ]
+            ],
         )
-    elif msg == 'card5':
-        contextAns = Cardmessage(
-            topic='test pdf',
-            file_path='file_doc/test_pdf.pdf'
-        )
+
     else:
         contextAns = Cardmessage(
-            topic=msg
+            topic='ขออภัย กรุณาบอกใหม่อีกครั้ง',
+            subtopic='หรือลองดูบริการจากเมนูไหม ?',
+            buttonText=[
+                'ไปที่เมนู',
+                'ไปที่เมนู',
+            ],
         )
 
     return {
-        "token": mytoken,
+        "token": device_token,
         "TimeSend": "2022-06-07 15:04:58.408218+07:00",
         "TimeAns": "2022-06-07 15:04:58.408218+07:00",
         "msgSend": msg,
