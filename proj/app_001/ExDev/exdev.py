@@ -40,6 +40,7 @@ def welcome(device_id: str):
         topic='สวัสดี ฉันคือ บอท',
         subtopic='มีอะไรให้ฉันช่วยไหม',
     )
+    
     return {
         "token": token,
         "Time": timestr,
