@@ -36,9 +36,10 @@ def welcome(device_id: str):
     # hash(device_id + timestr)
     token = hash(device_id + timestr)  # type token int
 
-    textWelcome = 'สวัสดี ฉันคือ บอท \nมีอะไรให้ฉันช่วยไหม'
-
-    context = Cardmessage(topic=textWelcome)
+    context = Cardmessage(
+        topic='สวัสดี ฉันคือ บอท',
+        subtopic='มีอะไรให้ฉันช่วยไหม',
+    )
     return {
         "token": token,
         "Time": timestr,
