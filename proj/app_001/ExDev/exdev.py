@@ -51,6 +51,61 @@ def welcome(device_id: str):
     }
 
 
-@router.get("/")
-def chat():
-    return
+@router.get("/ChatMsg")
+def chat_msg(msg: str, mytoken: int, contextSend: str):
+
+    if msg == 'card1':
+        contextAns = Cardmessage(
+            topic='ร้องเรียนเจ้าหน้าที่',
+            subtopic='การแจ้งข้อมูลจะต้องเป็นความจริงทุกประการ\nการใช้ข้อมูลเท็จหรือใช้ข้อมูลผู้อื่นของมาแอบอ้าง\nอาจถูกดำเนินการตามกฎหมาย',
+            buttonLink=[
+                'เข้าสู่เว็บไซต์',
+                'https://register.dsi.go.th/'
+            ],
+            image='https://www.dsi.go.th//images/banner/complaint_dsi_officer.jpg'
+        )
+    elif msg == 'card2':
+        contextAns = Cardmessage(
+            topic='เมนูหลัก',
+            subtopic='คลิกเลือกรายการที่ต้องการ :',
+            buttonText=[
+                'ช่องทางการติดต่อ',
+                'ช่องทางการติดต่อ',
+                'เมนูติดต่อ',
+                'เมนูติดต่อ',
+                'บริการ',
+                'บริการ',
+                'เมนูบริการ',
+                'เมนูบริการ',
+                'กฎหมายและระเบียบ',
+                'กฎหมายและระเบียบ',
+                'เมนูกฎหมาย',
+                'เมนูกฎหมาย',
+            ]
+        )
+    elif msg == 'card3':
+        contextAns = Cardmessage(
+            topic='โทรศัพท์',
+            subtopic='หมายเลข 0 2831 9888\nวันและเวลาราชการ (08.30-16.30)',
+            buttonPhone=[
+                'โทรออก',
+                '028319888',
+            ]
+        )
+    elif msg == 'card5':
+        contextAns = Cardmessage(
+            topic='test pdf',
+            file_path='file_doc/test_pdf.pdf'
+        )
+    else:
+        contextAns = Cardmessage(
+            topic=msg
+        )
+
+    return {
+        "token": mytoken,
+        "TimeSend": "2022-06-07 15:04:58.408218+07:00",
+        "TimeAns": "2022-06-07 15:04:58.408218+07:00",
+        "msgSend": msg,
+        "context": contextAns
+    }

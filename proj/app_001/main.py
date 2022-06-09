@@ -1,3 +1,4 @@
+from proj.app_001.ExDev import exdev
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
@@ -28,6 +29,7 @@ class outgoing_message(BaseModel):
 
 
 app = FastAPI()
+app.include_router(exdev.router)
 
 # CORS (Cross-Origin Resource Sharing)
 # ["https://localhost","http://localhost","http://localhost:8080"]
@@ -61,6 +63,11 @@ def chat(inc_msg: incoming_message):
 # https://fastapi.tiangolo.com/tutorial/response-model/
 
 
+"""
+test area
+"""
+
+
 # context
 class Cardmessage(BaseModel):
     topic: str
@@ -76,7 +83,7 @@ class Cardmessage(BaseModel):
     file_path: Union[str, None] = None  # file
 
 
-@app.get("/ChatMsg")
+@app.get("/ChatMsg", tags=["test"])
 def chat_msg(msg: str, mytoken: int, contextSend: str):
 
     if msg == 'card1':
@@ -136,7 +143,7 @@ def chat_msg(msg: str, mytoken: int, contextSend: str):
     }
 
 
-@app.get("/GetPdfFile")
+@app.get("/GetPdfFile", tags=["test"])
 def get_pdf_file(jsB_file_path: str):
     return file(jsB_file_path)
 
