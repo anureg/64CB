@@ -40,7 +40,7 @@ def welcome(device_id: str):
         topic='สวัสดี ฉันคือ บอท',
         subtopic='มีอะไรให้ฉันช่วยไหม',
     )
-    
+
     return {
         "token": token,
         "Time": timestr,
@@ -90,8 +90,8 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
 
     return {
         "token": device_token,
-        "TimeSend": "2022-06-07 15:04:58.408218+07:00",
-        "TimeAns": datetime.now(tz=timezone(timedelta(hours=7))).isoformat(sep=" "),
+        "TimeSend": datetime.now(tz=timezone(timedelta(hours=7))).isoformat(sep=" "),
+        "TimeAns": "2022-06-07 15:04:58.408218+07:00",
         "msgSend": msg,
         "context": contextAns
     }

@@ -48,13 +48,13 @@ def read_root():
     return {"message": "Hello Worlds"}
 
 
-# @app.get("/welcome")
-# def root(device_id: str):
-#     token = '6930525350968360228'
-#     return {
-#         "token": token,
-#         "message": "ยินดีต้อนรับ"
-#     }
+@app.get("/welcome")
+def root(device_id: str):
+    token = '6930525350968360228'
+    return {
+        "token": token,
+        "message": "ยินดีต้อนรับ"
+    }
 
 
 @app.get("/chat", tags=["Chat"], response_model=outgoing_message)
