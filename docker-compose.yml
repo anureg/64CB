@@ -1,13 +1,48 @@
-version: '2.0'
+version: "3.9"
+
 services:
-  chat-api:
-    image: chat-api
-    build:
-      context: .
-      dockerfile: build/Dockerfile
-    container_name: chat-api
+  api:
+    build: ./build/python
+    volumes:
+      - ./proj/app_001:/code/app
+      - ./ssl/mkcert-localhost:/code/ssl
+    command: uvicorn app.main:app --host 0.0.0.0 --port 443 --ssl-keyfile=./ssl/key.pem --ssl-certfile=./ssl/cert.pem --reload
+    
+    #command: uvicorn main:app --host 0.0.0.0 --port 5000 --reload  
+    
     ports:
-      - 8000:8000
+      - "443:443"
+    # networks:
+      # - dev_cb
+      # dev_cb:
+        # ipv4_address: 192.168.64.100
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+          - ./data/db_001:/data/db  
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
 
 
-
+# networks:
+  # dev_cb:
+    # ipam:
+      # driver: default
+      # config:
+        # - subnet: "192.168.64.0/24"
+  
