@@ -46,9 +46,9 @@ def login_platform(usrname: str, password: str, device_id: str):
         icon = '/ExDev/icon_platform/Instagram.png'
 
     return {
-        token: token,
-        username: username,
-        name: name,
-        surname: surname,
-        icon: icon
+        "token": token,
+        "username": username,
+        "name": name,
+        "surname": surname,
+        "icon": icon
     }
