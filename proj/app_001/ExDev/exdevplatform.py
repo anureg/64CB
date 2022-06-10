@@ -19,28 +19,28 @@ router = APIRouter(
 
 
 @router.get("/")
-def login_platform(login: Login_in):
+def login_platform(usrname: str, password: str, device_id: str):
     # Time zone in Thailand UTC+7
     tz = timezone(timedelta(hours=7))
     # Create a date object with given timezone
     timestr = datetime.now(tz=tz).isoformat(sep=" ")
     # hash(device_id + timestr)
-    token = hash(login.device_id + timestr)  # type token int
+    token = hash(device_id + timestr)  # type token int
 
-    if login.username == 'facebook':
-        username = login.username
+    if usrname == 'facebook':
+        username = usrname
         name = 'Face'
         surname = 'book'
         icon = '/ExDev/icon_platform/Facebook.png'
 
-    elif login.username == 'twitter':
-        username = login.username
+    elif usrname == 'twitter':
+        username = usrname
         name = 'Twit'
         surname = 'ter'
         icon = '/ExDev/icon_platform/Twitter.png'
-    
-    elif login.username == 'instagram':
-        username = login.username
+
+    elif usrname == 'instagram':
+        username = usrname
         name = 'Insta'
         surname = 'gram'
         icon = '/ExDev/icon_platform/Instagram.png'
