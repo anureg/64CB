@@ -27,10 +27,23 @@ def login_platform(login: Login_in):
     # hash(device_id + timestr)
     token = hash(login.device_id + timestr)  # type token int
 
-    username = login.username
-    name = 'Face'
-    surname = 'book'
-    icon = '/ExDev/icon_platform/Facebook.png'
+    if login.username == 'facebook':
+        username = login.username
+        name = 'Face'
+        surname = 'book'
+        icon = '/ExDev/icon_platform/Facebook.png'
+
+    elif login.username == 'twitter':
+        username = login.username
+        name = 'Twit'
+        surname = 'ter'
+        icon = '/ExDev/icon_platform/Twitter.png'
+    
+    elif login.username == 'instagram':
+        username = login.username
+        name = 'Insta'
+        surname = 'gram'
+        icon = '/ExDev/icon_platform/Instagram.png'
 
     return {
         token: token,
