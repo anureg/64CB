@@ -1,4 +1,4 @@
-from proj.app_001.ExDev import exdev
+from proj.app_001.ExDev import exdevchat, exdevplatform
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
@@ -29,7 +29,8 @@ class outgoing_message(BaseModel):
 
 
 app = FastAPI()
-app.include_router(exdev.router)
+app.include_router(exdevchat.router)
+app.include_router(exdevplatform.router)
 
 # CORS (Cross-Origin Resource Sharing)
 # ["https://localhost","http://localhost","http://localhost:8080"]

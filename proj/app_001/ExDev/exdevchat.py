@@ -22,8 +22,8 @@ class Cardmessage(BaseModel):
 
 
 router = APIRouter(
-    prefix="/ExDev",
-    tags=["ExDev"],
+    prefix="/ExDevChat",
+    tags=["ExDevChat"],
 )
 
 
