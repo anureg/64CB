@@ -79,7 +79,7 @@ def login_platform(login: login_req):
                 StatusLogin = "Login error"  # ถ้ารหัสผิด
                 break
         else:
-            StatusLogin = "Not Found"  # ถ้าหา username ใน DB ไม่เจอ
+            return {"StatusLogin": "Not Found"}
 
     return {
         "StatusLogin": StatusLogin,
@@ -107,6 +107,6 @@ def test(T: Test1):
     userId = fake_db_users[0]["_id"]
     return {
         "test2": str(T.test1),
-        "testtest2": str(T.test1+T.test1),
-        "_ii": str(userId)
+        "testtest2": str(usesrId),
+        "_ii": str(T.test1 + T.test1 + T.test1)
     }
