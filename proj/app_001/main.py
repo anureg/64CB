@@ -1,4 +1,6 @@
-from proj.app_001.ExDev import exdevchat, exdevplatform
+from proj.app_001.platform import exdevplatform
+from proj.app_001.chat import exdevchat
+
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 

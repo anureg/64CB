@@ -6,18 +6,12 @@ from typing import List, Union
 from datetime import datetime, timezone, timedelta
 
 
-class Login_in(BaseModel):
-    username: str
-    password: str
-    device_id: str
-
-
 router = APIRouter(
     prefix="/ExDevPlatform",
     tags=["ExDevPlatform"],
 )
 
-# post
+
 path_ImageProfile = "/platform/icon_users/"
 fake_db_users = [
     {
