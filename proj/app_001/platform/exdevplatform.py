@@ -66,7 +66,7 @@ def login_platform(login: login_req):
     # Create a date object with given timezone
     timestr = datetime.now(tz=tz).isoformat(sep=" ")
     # hash(device_id + timestr)
-    token = hash(login.device_id + timestr)  # type token int
+    get_token = hash(login.device_id + timestr)  # type token int
 
     for item in fake_db_users:
         if item["user_Username"] == login.username:
@@ -78,10 +78,10 @@ def login_platform(login: login_req):
             return {"StatusLogin": "Not Found"}  # ถ้าหา username ใน DB ไม่เจอ
 
     return {
-        "token": token,
-        "_id": user["_id"],
-        "user_Username": user["user_Username"],
-        "user_Name": user["user_Name"],
-        "user_Surname": user["user_Surname"],
-        "user_ImageProfile": path_ImageProfile+user["user_ImageProfile"]
+        token: get_token,
+        _id: user["_id"],
+        user_Username: user["user_Username"],
+        user_Name: user["user_Name"],
+        user_Surname: user["user_Surname"],
+        user_ImageProfile: path_ImageProfile+user["user_ImageProfile"]
     }
