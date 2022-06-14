@@ -78,8 +78,7 @@ def login_platform(login: login_req):
         else:
             return {"StatusLogin": "Not Found"}  # ถ้าหา username ใน DB ไม่เจอ
             """
-
-    return {
+    send = {
         "token": int(get_token),
         "_id": str(user['_id']),
         "user_Username": str(user['user_Username']),
@@ -87,6 +86,8 @@ def login_platform(login: login_req):
         "user_Surname": str(user['user_Surname']),
         "user_ImageProfile": str(path_ImageProfile + user['user_ImageProfile'])
     }
+    print(send)
+    return send
 
 
 class Test1(BaseModel):
