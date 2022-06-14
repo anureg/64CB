@@ -86,13 +86,17 @@ def login_platform(login: login_req):
         user_ImageProfile: str(path_ImageProfile+user["user_ImageProfile"])
     }
 
+
 class Test1(BaseModel):
-    test1:str
+    test1: str
+
+
 class Test2(BaseModel):
     test2: str
     testtest2: str
+
+
 @router.post("/test", response_model=Test2)
 def test(T: Test1):
-    test2 = T.test1
-    testtest2 = T.test1+T.test1
-    return
+    return {test2: T.test1,
+            testtest2: T.test1+T.test1}
