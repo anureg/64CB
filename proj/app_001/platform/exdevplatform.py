@@ -98,5 +98,6 @@ class Test2(BaseModel):
 
 @router.post("/test", response_model=Test2)
 def test(T: Test1):
-    return {test2: T.test1,
-            testtest2: T.test1+T.test1}
+    Test2["test2"] = T.test1
+    return {"test2": T.test1,
+            "testtest2": T.test1+T.test1}
