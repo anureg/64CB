@@ -73,23 +73,22 @@ def login_platform(login: login_req):
         if login.username == item["user_Username"]:
             user = item
             if login.password == item["user_Password"]:
-                StatusLogin = "Connect"  # ถ้ารหัสถูก
-                break
+
+                return{
+                    "StatusLogin": "Connect",
+                    "token": int(get_token),
+                    "user_id": str(user['_id']),
+                    "user_Username": str(user['user_Username']),
+                    "user_Name": str(user['user_Name']),
+                    "user_Surname": str(user['user_Surname']),
+                    "user_ImageProfile": str(path_ImageProfile + user['user_ImageProfile'])
+                }
+
             else:
-                StatusLogin = "Login error"  # ถ้ารหัสผิด
-                break
+                return {"StatusLogin": "Login error"}  # ถ้ารหัสผิด
+
         else:
             return {"StatusLogin": "Not Found"}  # ถ้าหา username ใน DB ไม่เจอ
-
-    return {
-        "StatusLogin": StatusLogin,
-        "token": int(get_token),
-        "user_id": str(user['_id']),
-        "user_Username": str(user['user_Username']),
-        "user_Name": str(user['user_Name']),
-        "user_Surname": str(user['user_Surname']),
-        "user_ImageProfile": str(path_ImageProfile + user['user_ImageProfile'])
-    }
 
 
 class Test1(BaseModel):
@@ -104,9 +103,14 @@ class Test2(BaseModel):
 
 @router.post("/test", response_model=Test2)
 def test(T: Test1):
-    userId = fake_db_users[0]["_id"]
+    for item in fake_db_users:
+        if T == item['user_Username']:
+            user = item
+            break
+        else:
+            user = "Not"
     return {
         "test2": str(T.test1),
-        "testtest2": str(userId),
+        "testtest2": str(user),
         "_ii": str(T.test1 + T.test1 + T.test1)
     }
