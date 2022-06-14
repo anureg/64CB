@@ -14,22 +14,6 @@ from typing import List, Union
 from datetime import datetime, timezone, timedelta
 
 
-class welcome_message(BaseModel):
-    token: str
-    message: str
-
-
-class incoming_message(BaseModel):
-    session_id: str
-    text: str
-    context: dict
-
-
-class outgoing_message(BaseModel):
-    text: str
-    context: dict
-
-
 app = FastAPI()
 app.include_router(exdevchat.router)
 app.include_router(exdevplatform.router)
@@ -49,21 +33,6 @@ app.add_middleware(
 @app.get("/")
 def read_root():
     return {"message": "Hello Worlds"}
-
-
-@app.get("/welcome")
-def root(device_id: str):
-    token = '6930525350968360228'
-    return {
-        "token": token,
-        "message": "ยินดีต้อนรับ"
-    }
-
-
-@app.get("/chat", tags=["Chat"], response_model=outgoing_message)
-def chat(inc_msg: incoming_message):
-    return {"Hello": "World"}
-# https://fastapi.tiangolo.com/tutorial/response-model/
 
 
 """

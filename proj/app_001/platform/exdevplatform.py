@@ -68,4 +68,16 @@ def login_platform(login: login_req):
     # hash(device_id + timestr)
     token = hash(device_id + timestr)  # type token int
 
-    return login
+    for item in fake_db_users:
+        if item["user_Username"] == login.username:
+            if item["user_Password"] == login.password:
+                user = item  # ถ้ารหัสถูก
+            else:
+                return {"StatusLogin": "Login error"}  # ถ้ารหัสผิด
+        else:
+            return {"StatusLogin": "Not Found"}  # ถ้าหา username ใน DB ไม่เจอ
+
+    return {
+        "token": token,
+        "_id": user["_id"]
+    }
