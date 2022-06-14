@@ -90,3 +90,19 @@ def login_platform(login: login_req):
             }
 
     return {"StatusLogin": "Not Found"}
+
+
+class TestRes(BaseModel):
+    testRes1: str
+    testRes2: str
+
+class TestReq(BaseModel):
+    testReq1: str
+    testReq2: str
+
+@router.post("/test", response_model=TestRes)
+def test(T: TestReq):
+    a = TestRes()
+    a.testRes1 = 'a'
+    a.testRes2 = T.testReq2
+    return a
