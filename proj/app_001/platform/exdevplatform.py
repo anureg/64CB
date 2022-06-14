@@ -53,14 +53,14 @@ class login_req(BaseModel):
 class login_res(BaseModel):
     StatusLogin: str
     token: int
-    user_id: str
-    user_Username: str
-    user_Name: str
-    user_Surname: str
-    user_ImageProfile: str
+    user_id: Union[str, None] = None
+    user_Username: Union[str, None] = None
+    user_Name: Union[str, None] = None
+    user_Surname: Union[str, None] = None
+    user_ImageProfile: Union[str, None] = None
 
 
-@router.post("/", response_model=login_res)
+@router.post("/", response_model=login_res, response_model_exclude_unset=True)
 def login_platform(login: login_req):
     # Time zone in Thailand UTC+7
     tz = timezone(timedelta(hours=7))
@@ -73,13 +73,12 @@ def login_platform(login: login_req):
         if item["user_Username"] == login.username:
             if item["user_Password"] == login.password:
                 user = item  # ถ้ารหัสถูก
-
             else:
                 return {"StatusLogin": "Login error"}  # ถ้ารหัสผิด
         else:
             return {"StatusLogin": "Not Found"}  # ถ้าหา username ใน DB ไม่เจอ
 
-    send = {
+    return {
         "StatusLogin": "Connect",
         "token": int(get_token),
         "user_id": str(user['_id']),
@@ -88,8 +87,6 @@ def login_platform(login: login_req):
         "user_Surname": str(user['user_Surname']),
         "user_ImageProfile": str(path_ImageProfile + user['user_ImageProfile'])
     }
-    print(send)
-    return send
 
 
 class Test1(BaseModel):
