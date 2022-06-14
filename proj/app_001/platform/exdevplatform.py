@@ -70,25 +70,20 @@ def login_platform(login: login_req):
     get_token = hash(login.device_id + timestr)  # type token int
 
     for item in fake_db_users:
-        if login.username == item["user_Username"]:
+        if login.username == item["user_Username"] and login.password == item["user_Password"]:
             user = item
-            if login.password == item["user_Password"]:
-
-                return{
-                    "StatusLogin": "Connect",
-                    "token": int(get_token),
-                    "user_id": str(user['_id']),
-                    "user_Username": str(user['user_Username']),
-                    "user_Name": str(user['user_Name']),
-                    "user_Surname": str(user['user_Surname']),
-                    "user_ImageProfile": str(path_ImageProfile + user['user_ImageProfile'])
-                }
-
-            else:
-                return {"StatusLogin": "Login error"}  # ถ้ารหัสผิด
+            return{
+                "StatusLogin": "Connect",
+                "token": int(get_token),
+                "user_id": str(user['_id']),
+                "user_Username": str(user['user_Username']),
+                "user_Name": str(user['user_Name']),
+                "user_Surname": str(user['user_Surname']),
+                "user_ImageProfile": str(path_ImageProfile + user['user_ImageProfile'])
+            }
 
         else:
-            return {"StatusLogin": "Not Found"}  # ถ้าหา username ใน DB ไม่เจอ
+            return {"StatusLogin": "Login error"}
 
 
 class Test1(BaseModel):
