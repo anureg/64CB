@@ -73,12 +73,14 @@ def login_platform(login: login_req):
             if item["user_Password"] == login.password:
                 print(item)
                 user = item  # ถ้ารหัสถูก
+                print(user["_id"])
+                print(user["user_Email"])
             else:
                 return {"StatusLogin": "Login error"}  # ถ้ารหัสผิด
         else:
             return {"StatusLogin": "Not Found"}  # ถ้าหา username ใน DB ไม่เจอ
 
-    return {
+    send = {
         "token": int(get_token),
         "_id": str(user["_id"]),
         "user_Username": str(user["user_Username"]),
@@ -86,6 +88,7 @@ def login_platform(login: login_req):
         "user_Surname": str(user["user_Surname"]),
         "user_ImageProfile": str(path_ImageProfile+user["user_ImageProfile"])
     }
+    return send
 
 
 class Test1(BaseModel):
