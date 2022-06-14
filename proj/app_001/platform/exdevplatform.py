@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from fastapi.responses import JSONResponse
 
 from pydantic import BaseModel
 from typing import List, Union
@@ -59,7 +60,7 @@ class login_res(BaseModel):
     user_ImageProfile: str
 
 
-@router.post("/", response_model=login_res)
+@router.post("/", response_model=login_res, responses={404: {"model": Message}})
 def login_platform(login: login_req):
     # Time zone in Thailand UTC+7
     tz = timezone(timedelta(hours=7))
@@ -71,11 +72,14 @@ def login_platform(login: login_req):
     for item in fake_db_users:
         if item["user_Username"] == login.username:
             if item["user_Password"] == login.password:
+                print(item)
                 user = item  # ถ้ารหัสถูก
             else:
-                return {"StatusLogin": "Login error"}  # ถ้ารหัสผิด
+                return JSONResponse(status_code=404, content={"StatusLogin": "Login error"})
+                # {"StatusLogin": "Login error"}  # ถ้ารหัสผิด
         else:
-            return {"StatusLogin": "Not Found"}  # ถ้าหา username ใน DB ไม่เจอ
+            return JSONResponse(status_code=404, content={"StatusLogin": "Not Found"})
+            # {"StatusLogin": "Not Found"}  # ถ้าหา username ใน DB ไม่เจอ
 
     return {
         "token": int(get_token),
