@@ -71,10 +71,7 @@ def login_platform(login: login_req):
     for item in fake_db_users:
         if item["user_Username"] == login.username:
             if item["user_Password"] == login.password:
-                print(item)
                 user = item  # ถ้ารหัสถูก
-                print(user["_id"])
-                print(user["user_Email"])
             else:
                 return {"StatusLogin": "Login error"}  # ถ้ารหัสผิด
         else:
@@ -82,11 +79,11 @@ def login_platform(login: login_req):
 
     send = {
         "token": int(get_token),
-        "_id": str(user["_id"]),
-        "user_Username": str(user["user_Username"]),
-        "user_Name": str(user["user_Name"]),
-        "user_Surname": str(user["user_Surname"]),
-        "user_ImageProfile": str(path_ImageProfile+user["user_ImageProfile"])
+        "_id": str(user['_id']),
+        "user_Username": str(user['user_Username']),
+        "user_Name": str(user['user_Name']),
+        "user_Surname": str(user['user_Surname']),
+        "user_ImageProfile": str(path_ImageProfile + user['user_ImageProfile'])
     }
     return send
 
