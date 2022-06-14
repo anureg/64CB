@@ -78,10 +78,10 @@ def login_platform(login: login_req):
             return {"StatusLogin": "Not Found"}  # ถ้าหา username ใน DB ไม่เจอ
 
     return {
-        token: get_token,
-        _id: user["_id"],
-        user_Username: user["user_Username"],
-        user_Name: user["user_Name"],
-        user_Surname: user["user_Surname"],
-        user_ImageProfile: path_ImageProfile+user["user_ImageProfile"]
+        "token": get_token,
+        "_id": user["_id"],
+        "user_Username": user["user_Username"],
+        "user_Name": user["user_Name"],
+        "user_Surname": user["user_Surname"],
+        "user_ImageProfile": user["user_ImageProfile"]
     }
