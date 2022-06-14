@@ -71,15 +71,17 @@ def login_platform(login: login_req):
 
     for item in fake_db_users:
         if item["user_Username"] == login.username:
+            user = item
             if item["user_Password"] == login.password:
-                user = item  # ถ้ารหัสถูก
+                #
+                StatusLogin = "Connect"  # ถ้ารหัสถูก
             else:
-                return {"StatusLogin": "Login error"}  # ถ้ารหัสผิด
+                StatusLogin = "Login error"  # ถ้ารหัสผิด
         else:
-            return {"StatusLogin": "Not Found"}  # ถ้าหา username ใน DB ไม่เจอ
+            StatusLogin = "Not Found"  # ถ้าหา username ใน DB ไม่เจอ
 
     return {
-        "StatusLogin": "Connect",
+        "StatusLogin": StatusLogin,
         "token": int(get_token),
         "user_id": str(user['_id']),
         "user_Username": str(user['user_Username']),
