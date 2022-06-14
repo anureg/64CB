@@ -66,7 +66,7 @@ def login_platform(login: login_req):
     # Create a date object with given timezone
     timestr = datetime.now(tz=tz).isoformat(sep=" ")
     # hash(device_id + timestr)
-    token = hash(device_id + timestr)  # type token int
+    token = hash(login.device_id + timestr)  # type token int
 
     for item in fake_db_users:
         if item["user_Username"] == login.username:
@@ -79,5 +79,9 @@ def login_platform(login: login_req):
 
     return {
         "token": token,
-        "_id": user["_id"]
+        "_id": user["_id"],
+        "user_Username": user["user_Username"],
+        "user_Name": user["user_Name"],
+        "user_Surname": user["user_Surname"],
+        "user_ImageProfile": path_ImageProfile+user["user_ImageProfile"]
     }
