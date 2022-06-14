@@ -60,21 +60,28 @@ class login_res(BaseModel):
     user_ImageProfile: Union[str, None] = None
 
 
-@router.post("/", response_model=login_res, response_model_exclude_unset=True)
-def login_platform(login: login_req):
+def GenToken(id):
     # Time zone in Thailand UTC+7
     tz = timezone(timedelta(hours=7))
     # Create a date object with given timezone
     timestr = datetime.now(tz=tz).isoformat(sep=" ")
     # hash(device_id + timestr)
-    get_token = hash(login.device_id + timestr)  # type token int
+    token = hash(id + time)  # type token int
+    return token
+
+
+@router.post("/", response_model=login_res, response_model_exclude_unset=True)
+def login_platform(login: login_req):
 
     for item in fake_db_users:
         if login.username == item["user_Username"] and login.password == item["user_Password"]:
+
             user = item
-            return{
+            token = GenToken(id=login.device_id)
+
+            return {
                 "StatusLogin": "Connect",
-                "token": int(get_token),
+                "token": int(token),
                 "user_id": str(user['_id']),
                 "user_Username": str(user['user_Username']),
                 "user_Name": str(user['user_Name']),
@@ -83,29 +90,4 @@ def login_platform(login: login_req):
             }
 
         else:
-            return {"StatusLogin": "Login error"}
-
-
-class Test1(BaseModel):
-    test1: str
-
-
-class Test2(BaseModel):
-    test2: str
-    testtest2: str
-    _ii: str
-
-
-@router.post("/test", response_model=Test2)
-def test(T: Test1):
-    for item in fake_db_users:
-        if T == item['user_Username']:
-            user = item
-            break
-        else:
-            user = "Not"
-    return {
-        "test2": str(T.test1),
-        "testtest2": str(user),
-        "_ii": str(T.test1 + T.test1 + T.test1)
-    }
+            return {"StatusLogin": "Not Found"}
