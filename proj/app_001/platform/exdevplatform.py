@@ -73,10 +73,11 @@ def login_platform(login: login_req):
         if item["user_Username"] == login.username:
             user = item
             if item["user_Password"] == login.password:
-                #
                 StatusLogin = "Connect"  # ถ้ารหัสถูก
+                break
             else:
                 StatusLogin = "Login error"  # ถ้ารหัสผิด
+                break
         else:
             StatusLogin = "Not Found"  # ถ้าหา username ใน DB ไม่เจอ
 
@@ -103,8 +104,9 @@ class Test2(BaseModel):
 
 @router.post("/test", response_model=Test2)
 def test(T: Test1):
+    userId = fake_db_users[0]["_id"]
     return {
         "test2": str(T.test1),
         "testtest2": str(T.test1+T.test1),
-        "_ii": str(T.test1 + T.test1 + T.test1)
+        "_ii": str(userId)
     }
