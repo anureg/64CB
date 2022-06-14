@@ -97,11 +97,13 @@ class Test1(BaseModel):
 class Test2(BaseModel):
     test2: str
     testtest2: str
+    _ii: str
 
 
 @router.post("/test", response_model=Test2)
 def test(T: Test1):
     return {
         "test2": str(T.test1),
-        "testtest2": str(T.test1+T.test1)
+        "testtest2": str(T.test1+T.test1),
+        "_ii": str(T.test1 + T.test1 + T.test1)
     }
