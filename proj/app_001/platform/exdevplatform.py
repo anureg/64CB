@@ -66,7 +66,7 @@ def GenToken(id):
     # Create a date object with given timezone
     timestr = datetime.now(tz=tz).isoformat(sep=" ")
     # hash(device_id + timestr)
-    token = hash(id + time)  # type token int
+    token = hash(id + timestr)  # type token int
     return token
 
 
