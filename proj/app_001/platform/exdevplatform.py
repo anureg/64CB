@@ -52,7 +52,7 @@ class login_req(BaseModel):
 
 class login_res(BaseModel):
     token: int
-    _id: str
+    id: str
     user_Username: str
     user_Name: str
     user_Surname: str
@@ -80,7 +80,7 @@ def login_platform(login: login_req):
             """
     send = {
         "token": int(get_token),
-        "_id": str(user['_id']),
+        "id": str(user['_id']),
         "user_Username": str(user['user_Username']),
         "user_Name": str(user['user_Name']),
         "user_Surname": str(user['user_Surname']),
@@ -97,7 +97,7 @@ class Test1(BaseModel):
 class Test2(BaseModel):
     test2: str
     testtest2: str
-    _ii: str
+    ii: str
 
 
 @router.post("/test", response_model=Test2)
@@ -105,5 +105,5 @@ def test(T: Test1):
     return {
         "test2": str(T.test1),
         "testtest2": str(T.test1+T.test1),
-        "_ii": str(T.test1 + T.test1 + T.test1)
+        "ii": str(T.test1 + T.test1 + T.test1)
     }
