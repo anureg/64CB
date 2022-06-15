@@ -99,7 +99,7 @@ conn = MongoClient("mongodb://root:example@10.59.201.28:27017")
 mydb = conn["RD_Platform"]
 mycol = mydb["Users"]
 
-x = mycol.find()
+x = mycol.find_one()
 print(x)
 
 @router.get("/db")
