@@ -101,3 +101,7 @@ mycol = mydb["Users"]
 
 x = mycol.find()
 print(x)
+
+@router.get("/")
+def get_db():
+    return x
