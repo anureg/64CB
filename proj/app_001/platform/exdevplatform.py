@@ -90,18 +90,3 @@ def login_platform(login: login_req):
             }
 
     return {"StatusLogin": "Login error"}
-
-
-
-from pymongo import MongoClient
-conn = MongoClient("mongodb://root:example@10.59.201.28:27017")
-
-mydb = conn["RD_Platform"]
-mycol = mydb["Users"]
-
-x = mycol.find_one()
-print(x)
-
-@router.get("/db")
-def get_db():
-    return x
