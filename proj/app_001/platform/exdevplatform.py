@@ -89,4 +89,4 @@ def login_platform(login: login_req):
                 "user_ImageProfile": str(path_ImageProfile + user['user_ImageProfile'])
             }
 
-    return {"StatusLogin": "Not Found"}
+    return {"StatusLogin": "Login error"}
