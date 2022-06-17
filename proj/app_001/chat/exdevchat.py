@@ -115,7 +115,7 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
     }
 
 
-@app.get("/GetPdfFile", tags=["test"])
+@router.get("/GetPdfFile", tags=["test"])
 def get_pdf_file(jsB_file_path: str):
     return file(jsB_file_path)
 
