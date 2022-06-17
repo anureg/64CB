@@ -12,7 +12,7 @@ router = APIRouter(
 )
 
 
-path_ImageProfile = "/platform/icon_users/"
+path_ImageProfile = "/app/proj/app_001/platform/icon_users/"
 fake_db_users = [
     {
         "_id": "6219bc9ba8a68a763a9ae90e",

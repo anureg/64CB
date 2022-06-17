@@ -94,7 +94,7 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
     elif msg == 'case5':
         contextAns = Cardmessage(
             topic='test_pdf.pdf',
-            file_path='files/test_pdf.pdf'
+            file_path='test_pdf.pdf'
         )
 
     else:
@@ -117,7 +117,7 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
 
 
 # REF: https://www.youtube.com/watch?v=vpTAqnAbowo
-path_files_in_github = "/app/proj/app_001/platform"
+path_files_in_github = "/app/proj/app_001/platform/files/"
 
 
 @router.get("/GetFile")
