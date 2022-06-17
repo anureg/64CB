@@ -121,7 +121,7 @@ def get_pdf_file(jsB_file_path: str):
 
 
 # REF: https://www.youtube.com/watch?v=vpTAqnAbowo
-path = "/code/app/"
+path = "/app/"
 
 from fastapi.responses import FileResponse
 import os
