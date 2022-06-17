@@ -1,5 +1,8 @@
 from fastapi import APIRouter
 
+from fastapi.responses import FileResponse
+import os
+
 from pydantic import BaseModel
 from typing import List, Union
 
@@ -91,7 +94,7 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
     elif msg == 'case5':
         contextAns = Cardmessage(
             topic='test_pdf.pdf',
-            file_path='file_doc/test_pdf.pdf'
+            file_path='files/test_pdf.pdf'
         )
 
     else:
@@ -103,8 +106,6 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
                 'ไปที่เมนู',
             ],
         )
-    cwd = os.getcwd()
-    print(cwd)
 
     return {
         "token": device_token,
@@ -115,18 +116,13 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
     }
 
 
-@router.get("/GetPdfFile", tags=["test"])
-def get_pdf_file(jsB_file_path: str):
-    return file(jsB_file_path)
-
-
 # REF: https://www.youtube.com/watch?v=vpTAqnAbowo
-path = "/app/"
+path_files_in_github = "/app/proj/app_001/platform"
 
-from fastapi.responses import FileResponse
-import os
-def file(jsB: str):
-    file_path = os.path.join(path, jsB)
+
+@router.get("/GetFile")
+def get_file(location_file: str):
+    file_path = os.path.join(path_files_in_github, location_file)
     if os.path.exists(file_path):
         return FileResponse(file_path)
     return {"error": "File not found!"}
