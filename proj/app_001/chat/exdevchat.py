@@ -51,31 +51,47 @@ def welcome(device_id: str):
 @router.get("/ChatMsg")
 def chat_msg(msg: str, device_token: int, contextSend: str):
 
-    if msg == 'ทักทาย':
+    if msg == 'text':
         contextAns = Cardmessage(
-            topic='สวัสดีครับ',
+            topic='ข้อความ',
         )
-    elif msg == 'ช่องทางการติดต่อ':
+    elif msg == 'case1':
         contextAns = Cardmessage(
-            topic='ช่องทางการติดต่อ',
-            subtopic='คลิกเลือกรายการที่ต้องการ :',
+            topic='card1',
+            subtopic='คลิกเลือก website ที่ต้องการ :',
             buttonText=[
-                'ที่ทำการ',
-                'ที่ทำการ',
-                'โทรศัพท์',
-                'โทรศัพท์',
-                'โทรสาร',
-                'โทรสาร',
+                'เข้าสู่เว็บไซต์ google',
+                'https://www.google.com/',
+                'เข้าสู่เว็บไซต์ youtube',
+                'https://www.youtube.com/',
             ],
         )
-    elif msg == 'โทรศัพท์':
+    elif msg == 'case2':
         contextAns = Cardmessage(
-            topic='โทรศัพท์',
+            topic='card2',
+            subtopic='คลิกเลือกรายการที่ต้องการ :',
+            buttonText=[
+                'select item 1',
+                'show item 1',
+                'select item 2',
+                'show item 2',
+                'select item 3',
+                'show item 3',
+            ],
+        )
+    elif msg == 'case3':
+        contextAns = Cardmessage(
+            topic='card3',
             subtopic='หมายเลข 0 2831 9888\nวันและเวลาราชการ (08.30-16.30)',
             buttonPhone=[
                 'โทรออก',
                 '028319888',
             ],
+        )
+    elif msg == 'case5':
+        contextAns = Cardmessage(
+            topic='test_pdf.pdf',
+            file_path='file_doc/test_pdf.pdf'
         )
 
     else:
@@ -87,6 +103,8 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
                 'ไปที่เมนู',
             ],
         )
+    cwd = os.getcwd()
+    print(cwd)
 
     return {
         "token": device_token,
@@ -95,3 +113,20 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
         "msgSend": msg,
         "context": contextAns
     }
+
+
+@app.get("/GetPdfFile", tags=["test"])
+def get_pdf_file(jsB_file_path: str):
+    return file(jsB_file_path)
+
+
+# REF: https://www.youtube.com/watch?v=vpTAqnAbowo
+path = "/code/app/"
+
+from fastapi.responses import FileResponse
+import os
+def file(jsB: str):
+    file_path = os.path.join(path, jsB)
+    if os.path.exists(file_path):
+        return FileResponse(file_path)
+    return {"error": "File not found!"}
