@@ -100,8 +100,7 @@ class ChatHistory(BaseModel):
 
 import json
 with open('/app/proj/app_001/platform/fake_db/fake_db_chat_his.json') as json_file:
-    datal = json.load(json_file)
-    datar = json.read(json_file)
+    data = json.load(json_file)
 
 # import pandas as pd
 # fake_db_chat_his = pd.read_json('/proj/app_001/platform/fake_db/fake_db_chat_his.json')
@@ -109,6 +108,5 @@ with open('/app/proj/app_001/platform/fake_db/fake_db_chat_his.json') as json_fi
 @router.get("/chat/", response_model=List[ChatHistory])
 async def read_chat():
     
-    print(datal)
-    print(datar)
-    return datal
+    print(data)
+    return data
