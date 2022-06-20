@@ -14,7 +14,7 @@ router = APIRouter(
 
 
 def load_json(filename: str):
-    with open('/app/proj/app_001/platform/fake_db/{filename}.json') as json_file:
+    with open(f'/app/proj/app_001/platform/fake_db/{filename}') as json_file:
         js_file = json.load(json_file)
         return js_file
 
@@ -80,7 +80,7 @@ def GenToken(id):
 @router.post("/", response_model=login_res, response_model_exclude_unset=True)
 async def login_platform(login: login_req):
 
-    fake_db_users = load_json('fake_db_users')
+    fake_db_users = load_json('fake_db_users.json')
     for item in fake_db_users:
         if login.username == item["user_Username"] and login.password == item["user_Password"]:
 
@@ -109,5 +109,5 @@ class ChatHistory(BaseModel):
 
 @router.get("/chat/", response_model=List[ChatHistory])
 async def read_chat():
-    fake_db_chat_his = load_json('fake_db_chat_historys')
+    fake_db_chat_his = load_json('fake_db_chat_historys.json')
     return fake_db_chat_his
