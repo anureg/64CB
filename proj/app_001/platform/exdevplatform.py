@@ -93,8 +93,8 @@ def login_platform(login: login_req):
 
 
 
-import json
-fake_db_chat_his = json.load('/proj/app_001/platform/fake_db/fake_db_chat_his.json')
+# import json
+# fake_db_chat_his = json.load('/proj/app_001/platform/fake_db/fake_db_chat_his.json')
 
 
 class ChatHistory(BaseModel):
