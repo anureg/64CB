@@ -78,7 +78,7 @@ def GenToken(id):
 
 
 @router.post("/", response_model=login_res, response_model_exclude_unset=True)
-def login_platform(login: login_req):
+async def login_platform(login: login_req):
 
     fake_db_users = load_json('fake_db_users')
     for item in fake_db_users:
