@@ -1,3 +1,4 @@
+import pandas as pd
 from fastapi import APIRouter
 
 from pydantic import BaseModel
@@ -98,9 +99,15 @@ class ChatHistory(BaseModel):
     Chat_Msg: str
     Chat_Timestamp: str
 
-import pandas as pd
+
 @router.get("/chat/", response_model=List[ChatHistory])
 async def read_chat():
-    fake_db_chat_his = pd.read_json('/app/proj/app_001/platform/fake_db/fake_db_chat_his.json')
+    fake_db_chat_his = pd.read_json(
+        '/app/proj/app_001/platform/fake_db/fake_db_chat_his.json')
     print(fake_db_chat_his)
-    return 'a'
+    return {
+        "Chat_Token": 'a',
+        "Chat_Type": "a",
+        "Chat_Msg": "a",
+        "Chat_Timestamp": "a"
+    }
