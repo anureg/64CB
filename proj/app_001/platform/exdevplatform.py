@@ -98,7 +98,7 @@ fake_db_chat_his = json.load('/proj/app_001/platform/fake_db/fake_db_chat_his.js
 
 
 class ChatHistory(BaseModel):
-    Chat_Token: int
+    Chat_Token: str
     Chat_Type: str
     Chat_Msg: str
     Chat_Timestamp: str
