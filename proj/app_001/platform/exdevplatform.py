@@ -104,6 +104,6 @@ class ChatHistory(BaseModel):
     Chat_Timestamp: str
 
 
-@router.get("/ChatHis", response_model=List[ChatHistory])
+@router.get("/", response_model=List[ChatHistory])
 def chat_his():
     return fake_db_chat_his
