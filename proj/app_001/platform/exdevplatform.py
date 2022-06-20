@@ -93,15 +93,15 @@ def login_platform(login: login_req):
 
 
 
-import json
-fake_db_chat_his = json.load('/app/proj/app_001/platform/fake_db/fake_db_chat_his.json')
+# import json
+# fake_db_chat_his = json.load('/proj/app_001/platform/fake_db/fake_db_chat_his.json')
 
 
-class ChatHistory(BaseModel):
-    Chat_Token: int
-    Chat_Type: str
-    Chat_Msg: str
-    Chat_Timestamp: str
+# class ChatHistory(BaseModel):
+#     Chat_Token: int
+#     Chat_Type: str
+#     Chat_Msg: str
+#     Chat_Timestamp: str
 
 
 # @router.get("/ChatHis", response_model=List[ChatHistory])
