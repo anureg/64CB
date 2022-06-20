@@ -1,3 +1,4 @@
+import json
 from fastapi import APIRouter
 
 from pydantic import BaseModel
@@ -12,36 +13,42 @@ router = APIRouter(
 )
 
 
+def load_json(filename: str):
+    with open('/app/proj/app_001/platform/fake_db/{filename}.json') as json_file:
+        js_file = json.load(json_file)
+        return js_file
+
+
 path_ImageProfile = "/app/proj/app_001/platform/icon_users/"
-fake_db_users = [
-    {
-        "_id": "6219bc9ba8a68a763a9ae90e",
-        "user_Username": "uname1",
-        "user_Password": "pass1",
-        "user_Name": "name1",
-        "user_Surname": "นามสกุล1",
-        "user_ImageProfile": "6219bc9ba8a68a763a9ae90e.png",
-        "user_Email": "Name1@gmail.com"
-    },
-    {
-        "_id": "6219bccda8a68a763a9ae90f",
-        "user_Username": "uname2",
-        "user_Password": "pass2",
-        "user_Name": "name2",
-        "user_Surname": "นามสกุล2",
-        "user_ImageProfile": "6219bccda8a68a763a9ae90f.png",
-        "user_Email": "Name2@gmail.com"
-    },
-    {
-        "_id": "6219bd1ea8a68a763a9ae910",
-        "user_Username": "uname3",
-        "user_Password": "pass3",
-        "user_Name": "name3",
-        "user_Surname": "นามสกุล3",
-        "user_ImageProfile": "6219bd1ea8a68a763a9ae910.png",
-        "user_Email": "Name3@gmail.com"
-    }
-]
+# fake_db_users = [
+#     {
+#         "_id": "6219bc9ba8a68a763a9ae90e",
+#         "user_Username": "uname1",
+#         "user_Password": "pass1",
+#         "user_Name": "name1",
+#         "user_Surname": "นามสกุล1",
+#         "user_ImageProfile": "6219bc9ba8a68a763a9ae90e.png",
+#         "user_Email": "Name1@gmail.com"
+#     },
+#     {
+#         "_id": "6219bccda8a68a763a9ae90f",
+#         "user_Username": "uname2",
+#         "user_Password": "pass2",
+#         "user_Name": "name2",
+#         "user_Surname": "นามสกุล2",
+#         "user_ImageProfile": "6219bccda8a68a763a9ae90f.png",
+#         "user_Email": "Name2@gmail.com"
+#     },
+#     {
+#         "_id": "6219bd1ea8a68a763a9ae910",
+#         "user_Username": "uname3",
+#         "user_Password": "pass3",
+#         "user_Name": "name3",
+#         "user_Surname": "นามสกุล3",
+#         "user_ImageProfile": "6219bd1ea8a68a763a9ae910.png",
+#         "user_Email": "Name3@gmail.com"
+#     }
+# ]
 
 
 class login_req(BaseModel):
@@ -73,6 +80,7 @@ def GenToken(id):
 @router.post("/", response_model=login_res, response_model_exclude_unset=True)
 def login_platform(login: login_req):
 
+    fake_db_users = load_json('fake_db_users')
     for item in fake_db_users:
         if login.username == item["user_Username"] and login.password == item["user_Password"]:
 
@@ -98,10 +106,8 @@ class ChatHistory(BaseModel):
     Chat_Msg: str
     Chat_Timestamp: str
 
-import json
-with open('/app/proj/app_001/platform/fake_db/fake_db_chat_his.json') as json_file:
-    data = json.load(json_file)
 
 @router.get("/chat/", response_model=List[ChatHistory])
 async def read_chat():
-    return data
+    fake_db_chat_his = load_json('fake_db_chat_historys')
+    return fake_db_chat_his
