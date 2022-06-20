@@ -20,35 +20,6 @@ def load_json(filename: str):
 
 
 path_ImageProfile = "/app/proj/app_001/platform/icon_users/"
-# fake_db_users = [
-#     {
-#         "_id": "6219bc9ba8a68a763a9ae90e",
-#         "user_Username": "uname1",
-#         "user_Password": "pass1",
-#         "user_Name": "name1",
-#         "user_Surname": "นามสกุล1",
-#         "user_ImageProfile": "6219bc9ba8a68a763a9ae90e.png",
-#         "user_Email": "Name1@gmail.com"
-#     },
-#     {
-#         "_id": "6219bccda8a68a763a9ae90f",
-#         "user_Username": "uname2",
-#         "user_Password": "pass2",
-#         "user_Name": "name2",
-#         "user_Surname": "นามสกุล2",
-#         "user_ImageProfile": "6219bccda8a68a763a9ae90f.png",
-#         "user_Email": "Name2@gmail.com"
-#     },
-#     {
-#         "_id": "6219bd1ea8a68a763a9ae910",
-#         "user_Username": "uname3",
-#         "user_Password": "pass3",
-#         "user_Name": "name3",
-#         "user_Surname": "นามสกุล3",
-#         "user_ImageProfile": "6219bd1ea8a68a763a9ae910.png",
-#         "user_Email": "Name3@gmail.com"
-#     }
-# ]
 
 
 class login_req(BaseModel):
