@@ -93,17 +93,33 @@ def login_platform(login: login_req):
 
 
 
-import json
-fake_db_chat_his = json.load('/proj/app_001/platform/fake_db/fake_db_chat_his.json')
+# import json
+# fake_db_chat_his = json.load('/proj/app_001/platform/fake_db/fake_db_chat_his.json')
 
 
-class ChatHistory(BaseModel):
-    Chat_Token: int
-    Chat_Type: str
-    Chat_Msg: str
-    Chat_Timestamp: str
+# class ChatHistory(BaseModel):
+#     Chat_Token: int
+#     Chat_Type: str
+#     Chat_Msg: str
+#     Chat_Timestamp: str
 
 
-@router.get("/", response_model=List[ChatHistory], response_model_exclude_unset=True)
-def chat_his():
-    return fake_db_chat_his
+# @router.get("/", response_model=List[ChatHistory], response_model_exclude_unset=True)
+# def chat_his():
+#     return fake_db_chat_his
+
+
+class Item(BaseModel):
+    name: str
+    description: str
+
+
+items = [
+    {"name": "Foo", "description": "There comes my hero"},
+    {"name": "Red", "description": "It's my aeroplane"},
+]
+
+
+@router.get("/items/", response_model=List[Item])
+async def read_items():
+    return items
