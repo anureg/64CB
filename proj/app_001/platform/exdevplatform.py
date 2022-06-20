@@ -102,4 +102,5 @@ import pandas as pd
 @router.get("/chat/", response_model=List[ChatHistory])
 async def read_chat():
     fake_db_chat_his = pd.read_json('/app/proj/app_001/platform/fake_db/fake_db_chat_his.json')
-    return fake_db_chat_his
+    print(fake_db_chat_his)
+    return 'a'
