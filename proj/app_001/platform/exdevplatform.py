@@ -92,19 +92,14 @@ def login_platform(login: login_req):
     return {"StatusLogin": "Login error"}
 
 
-
-import pandas as pd
-fake_db_chat_his = pd.read_json('/proj/app_001/platform/fake_db/fake_db_chat_his.json')
-
-
 class ChatHistory(BaseModel):
     Chat_Token: str
     Chat_Type: str
     Chat_Msg: str
     Chat_Timestamp: str
 
-
+import pandas as pd
 @router.get("/chat/", response_model=List[ChatHistory])
 async def read_chat():
-    
+    fake_db_chat_his = pd.read_json('/app/proj/app_001/platform/fake_db/fake_db_chat_his.json')
     return fake_db_chat_his
