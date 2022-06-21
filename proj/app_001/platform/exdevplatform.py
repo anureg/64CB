@@ -88,8 +88,8 @@ async def read_chat():
 
 
 @router.get("/GetIcon")
-def get_Icon(location_icon: str,):
-    file_path = os.path.join(path_ImageProfile, location_icon)
+def get_Icon(icon_name: str,):
+    file_path = os.path.join(path_ImageProfile, icon_name)
     if os.path.exists(file_path):
         return FileResponse(file_path)
     return {"error": "File not found!"}

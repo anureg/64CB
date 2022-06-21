@@ -121,8 +121,8 @@ path_files_in_github = "/app/proj/app_001/platform/files/"
 
 
 @router.get("/GetFile")
-def get_file(location_file: str, device_token: int):
-    file_path = os.path.join(path_files_in_github, location_file)
+def get_file(file_name: str, device_token: int):
+    file_path = os.path.join(path_files_in_github, file_name)
     if os.path.exists(file_path):
         return FileResponse(file_path)
     return {"error": "File not found!"}
