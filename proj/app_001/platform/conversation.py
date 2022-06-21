@@ -27,16 +27,14 @@ fake_db_conversation = [
     }
 ]
 
-myuuid = uuid.uuid4()
-
 
 class Conversation(BaseModel):
-    _id: str
+    _id: gen_id
     conver_name: str
     description: Union[str, None] = None
 
     class Config:
-        _id: myuuid
+        gen_id: uuid.uuid4()
 
 
 @router.get("/", response_model=List[Conversation])
@@ -44,10 +42,7 @@ async def read_conver():
     return fake_db_conversation
 
 
-@router.post("/", response_model=List[Conversation])
+@router.post("/", response_model=Conversation)
 async def create_conver(conver: Conversation):
-    print(conver)
     fake_db_conversation.append(conver)
-
-    print(fake_db_conversation)
-    return fake_db_conversation
+    return conver
