@@ -1,5 +1,8 @@
+import os
 import json
+
 from fastapi import APIRouter
+from fastapi.responses import FileResponse
 
 from pydantic import BaseModel
 from typing import List, Union
@@ -84,12 +87,12 @@ async def read_chat():
     return fake_db_chat_his
 
 
-from fastapi.responses import FileResponse
-import os
 path_icon_users = "/app/proj/app_001/platform/icon_users/"
-@router.get("/GetFile")
-def get_file(location_file: str,):
-    file_path = os.path.join(path_icon_users, location_file)
+
+
+@router.get("/GetIcon")
+def get_Icon(location_icon: str,):
+    file_path = os.path.join(path_icon_users, location_icon)
     if os.path.exists(file_path):
         return FileResponse(file_path)
     return {"error": "File not found!"}
