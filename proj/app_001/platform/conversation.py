@@ -27,16 +27,15 @@ fake_db_conversation = [
     }
 ]
 
-myuuid = uuid.uuid4()
+
 
 
 class Conversation(BaseModel):
-    _id: gen_id
+    _id: uuid.uuid4()
     conver_name: str
     description: Union[str, None] = None
 
-    class Config:
-        gen_id: myuuid
+    
 
 
 @router.get("/readall/", response_model=List[Conversation])
