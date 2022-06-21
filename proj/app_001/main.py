@@ -1,17 +1,9 @@
-from proj.app_001.platform import exdevplatform
 from proj.app_001.chat import exdevchat
+from proj.app_001.platform import exdevplatform
 
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
 
 from fastapi.middleware.cors import CORSMiddleware
-
-import os
-
-from pydantic import BaseModel
-from typing import List, Union
-
-from datetime import datetime, timezone, timedelta
 
 
 app = FastAPI()
@@ -32,4 +24,4 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello Worlds"}
+    return {"message": "Hello World"}

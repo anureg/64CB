@@ -16,6 +16,16 @@ router = APIRouter(
 )
 
 
+def GenToken(id):
+    # Time zone in Thailand UTC+7
+    tz = timezone(timedelta(hours=7))
+    # Create a date object with given timezone
+    timestr = datetime.now(tz=tz).isoformat(sep=" ")
+    # hash(device_id + timestr)
+    token = hash(id + timestr)  # type token int
+    return token
+
+
 def load_json(filename: str):
     with open(f'/app/proj/app_001/platform/fake_db/{filename}') as json_file:
         js_file = json.load(json_file)
@@ -41,16 +51,6 @@ class login_res(BaseModel):
     user_ImageProfile: Union[str, None] = None
 
 
-def GenToken(id):
-    # Time zone in Thailand UTC+7
-    tz = timezone(timedelta(hours=7))
-    # Create a date object with given timezone
-    timestr = datetime.now(tz=tz).isoformat(sep=" ")
-    # hash(device_id + timestr)
-    token = hash(id + timestr)  # type token int
-    return token
-
-
 @router.post("/", response_model=login_res, response_model_exclude_unset=True)
 async def login_platform(login: login_req):
 
@@ -74,6 +74,14 @@ async def login_platform(login: login_req):
     return {"StatusLogin": "Login error"}
 
 
+@router.get("/GetIcon")
+def get_Icon(icon_name: str,):
+    file_path = os.path.join(path_ImageProfile, icon_name)
+    if os.path.exists(file_path):
+        return FileResponse(file_path)
+    return {"error": "File not found!"}
+
+
 class ChatHistory(BaseModel):
     Chat_Token: int
     Chat_Type: str
@@ -85,11 +93,3 @@ class ChatHistory(BaseModel):
 async def read_chat():
     fake_db_chat_his = load_json('fake_db_chat_historys.json')
     return fake_db_chat_his
-
-
-@router.get("/GetIcon")
-def get_Icon(icon_name: str,):
-    file_path = os.path.join(path_ImageProfile, icon_name)
-    if os.path.exists(file_path):
-        return FileResponse(file_path)
-    return {"error": "File not found!"}
