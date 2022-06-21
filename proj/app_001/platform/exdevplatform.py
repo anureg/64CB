@@ -82,3 +82,15 @@ class ChatHistory(BaseModel):
 async def read_chat():
     fake_db_chat_his = load_json('fake_db_chat_historys.json')
     return fake_db_chat_his
+
+
+from fastapi.responses import FileResponse
+import os
+path_icon_users = "/app/proj/app_001/platform/icon_users/"
+@router.get("/GetFile")
+def get_file(location_file: str,):
+    location_file = '6219bc9ba8a68a763a9ae90e.png'
+    file_path = os.path.join(path_icon_users, location_file)
+    if os.path.exists(file_path):
+        return FileResponse(file_path)
+    return {"error": "File not found!"}
