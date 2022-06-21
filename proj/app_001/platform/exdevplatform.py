@@ -87,12 +87,9 @@ async def read_chat():
     return fake_db_chat_his
 
 
-path_icon_users = "/app/proj/app_001/platform/icon_users/"
-
-
 @router.get("/GetIcon")
 def get_Icon(location_icon: str,):
-    file_path = os.path.join(path_icon_users, location_icon)
+    file_path = os.path.join(path_ImageProfile, location_icon)
     if os.path.exists(file_path):
         return FileResponse(file_path)
     return {"error": "File not found!"}
