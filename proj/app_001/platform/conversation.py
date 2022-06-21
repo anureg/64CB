@@ -43,6 +43,7 @@ async def read_conver():
 async def create_conver(conver: Conversation):
     myuuid = uuid.uuid4()
     conver._id = str(myuuid)
+    print(conver)
 
     fake_db_conversation.append(conver)
 
