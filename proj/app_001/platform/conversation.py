@@ -27,6 +27,8 @@ fake_db_conversation = [
     }
 ]
 
+myuuid = uuid.uuid4()
+
 
 class Conversation(BaseModel):
     _id: gen_id
@@ -34,7 +36,7 @@ class Conversation(BaseModel):
     description: Union[str, None] = None
 
     class Config:
-        gen_id: uuid.uuid4()
+        gen_id: myuuid
 
 
 @router.get("/", response_model=List[Conversation])
