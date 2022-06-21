@@ -42,7 +42,7 @@ async def read_conver():
     return fake_db_conversation
 
 
-@router.post("/", response_model=Conversation)
+@router.post("/", response_model=List[Conversation])
 async def create_conver(conver: Conversation):
     fake_db_conversation.append(conver)
-    return conver
+    return fake_db_conversation
