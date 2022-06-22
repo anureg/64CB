@@ -6,7 +6,6 @@ from typing import List, Union
 
 router = APIRouter(
     prefix="/Conversation",
-    tags=["Conversation"],
 )
 
 fake_res_conversation_list = [
@@ -36,50 +35,51 @@ class Conversation(BaseModel):
     description: Union[str, None] = None
 
 
-@router.get("/list", response_model=List[Conversation])
+@router.get("/list", tags=["Conversation List"], response_model=List[Conversation])
 def get_conversation_unit_list():
     # read all
     return fake_res_conversation_list
 
 
-@router.delete("/list", response_model=List[Conversation])
+@router.delete("/list", tags=["Conversation List"], response_model=List[Conversation])
 def delete_conversation_unit_list(ListName: List[str]):
+    """
     # delete many
     for name in ListName:
         for conver in fake_res_conversation_list:
             if conver['conver_name'] == name:
                 fake_res_conversation_list.remove(conver)
+    """
 
     return fake_res_conversation_list
 
 
-@router.post("/unit", response_model=List[Conversation])
-def create_conver(conver: Conversation):
-
+@router.post("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
+def create_conversation_unit(conversation: Conversation):
+    """
     # convert BaseModel to dict
-    con = conver.dict()
+    con = conversation.dict()
     # add oid
     # https://pymongo.readthedocs.io/en/stable/tutorial.html#inserting-a-document
     con["_id"] = str(myuuid)
 
     # add data to database
     fake_res_conversation_list.append(con)
+    """
 
     return fake_res_conversation_list
 
 
-@router.put("/unit", response_model=List[Conversation])
-def update_conversation_unit():
-    return fake_res_conversation_list
-
-@router.get("/unit")
+@router.get("/unit", tags=["Conversation Unit"])
 def get_conversation_unit(name: str):
-    for conver in fake_res_conversation_list:
-            if conver['conver_name'] == name:
-                return conver
-            else:
-                return "Not find"
+    return fake_res_conversation_list[0]
 
 
-#  rd conver list
-#  crud conver unit
+@router.put("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
+def update_conversation_unit(conversation: Conversation):
+    return fake_res_conversation_list
+
+
+@router.delete("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
+def delete_conversation_unit(name: str):
+    return fake_res_conversation_list
