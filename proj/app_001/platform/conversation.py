@@ -36,7 +36,7 @@ class Conversation(BaseModel):
     description: Union[str, None] = None
 
 class ConversationList(BaseModel):
-    conversations: List[Conversation]
+    conversations: List[Conversation.dict()]
 
 
 @router.get("/list", response_model=List[Conversation])
