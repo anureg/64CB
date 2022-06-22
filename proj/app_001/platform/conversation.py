@@ -59,6 +59,7 @@ async def create_conver(conver: Conversation):
     # add oid
     # https://pymongo.readthedocs.io/en/stable/tutorial.html#inserting-a-document
     con["_id"] = str(myuuid)
+    print(con)
 
     # add data to database
     fake_res_conversation_list.append(con)
