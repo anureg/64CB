@@ -43,29 +43,27 @@ def get_conversation_unit_list():
 
 @router.delete("/list", tags=["Conversation List"], response_model=List[Conversation])
 def delete_conversation_unit_list(ListName: List[str]):
-    """
-    # delete many
-    for name in ListName:
-        for conver in fake_res_conversation_list:
-            if conver['conver_name'] == name:
-                fake_res_conversation_list.remove(conver)
-    """
+
+    # # delete many
+    # for name in ListName:
+    #     for conver in fake_res_conversation_list:
+    #         if conver['conver_name'] == name:
+    #             fake_res_conversation_list.remove(conver)
 
     return fake_res_conversation_list
 
 
 @router.post("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
 def create_conversation_unit(conversation: Conversation):
-    """
-    # convert BaseModel to dict
-    con = conversation.dict()
-    # add oid
-    # https://pymongo.readthedocs.io/en/stable/tutorial.html#inserting-a-document
-    con["_id"] = str(myuuid)
 
-    # add data to database
-    fake_res_conversation_list.append(con)
-    """
+    # # convert BaseModel to dict
+    # con = conversation.dict()
+    # # add oid
+    # # https://pymongo.readthedocs.io/en/stable/tutorial.html#inserting-a-document
+    # con["_id"] = str(myuuid)
+
+    # # add data to database
+    # fake_res_conversation_list.append(con)
 
     return fake_res_conversation_list
 
