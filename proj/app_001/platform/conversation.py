@@ -37,13 +37,13 @@ class Conversation(BaseModel):
 
 
 @router.get("/list", response_model=List[Conversation])
-async def get_conversation_unit_list():
+def get_conversation_unit_list():
     # read all
     return fake_res_conversation_list
 
 
 @router.delete("/list", response_model=List[Conversation])
-async def delete_conversation_unit_list(ListName: List[str]):
+def delete_conversation_unit_list(ListName: List[str]):
     # delete many
     for name in ListName:
         for conver in fake_res_conversation_list:
@@ -54,7 +54,7 @@ async def delete_conversation_unit_list(ListName: List[str]):
 
 
 @router.post("/unit", response_model=List[Conversation])
-async def create_conver(conver: Conversation):
+def create_conver(conver: Conversation):
 
     # convert BaseModel to dict
     con = conver.dict()
@@ -69,11 +69,11 @@ async def create_conver(conver: Conversation):
 
 
 @router.put("/unit", response_model=List[Conversation])
-async def update_conversation_unit():
+def update_conversation_unit():
     return fake_res_conversation_list
 
 @router.get("/unit")
-async def get_conversation_unit(name: str):
+def get_conversation_unit(name: str):
     for conver in fake_res_conversation_list:
             if conver['conver_name'] == name:
                 return conver
