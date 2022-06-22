@@ -9,7 +9,7 @@ router = APIRouter(
     tags=["Conversation"],
 )
 
-fake_db_conversation = [
+fake_res_conversation_list = [
     {
         "_id": "62b173c605350640d79f2352",
         "conver_name": "00-2-1-GreetingUser-TH",
@@ -31,22 +31,45 @@ myuuid = uuid.uuid4()
 
 
 class Conversation(BaseModel):
-    _id: str
+    # _id: str
     conver_name: str
     description: Union[str, None] = None
 
-
-@router.get("/", response_model=List[Conversation])
-async def read_conver():
-    return fake_db_conversation
+    class Config:
+        _id: myuuid
 
 
-@router.post("/", response_model=List[Conversation])
+@router.get("/list", response_model=List[Conversation])
+async def get_conversation_unit_list():
+    # read all
+    return fake_res_conversation_list
+
+
+@router.delete("/list", response_model=List[Conversation])
+async def delete_conversation_unit_list():
+    # delete many
+    return fake_res_conversation_list
+
+
+@router.post("/unit", response_model=List[Conversation])
 async def create_conver(conver: Conversation):
-   
+
+    # convert BaseModel to dict
     con = conver.dict()
+    # add oid
+    # https://pymongo.readthedocs.io/en/stable/tutorial.html#inserting-a-document
     con["_id"] = str(myuuid)
 
-    fake_db_conversation.append(con)
+    # add data to database
+    fake_res_conversation_list.append(con)
 
-    return fake_db_conversation
+    return fake_res_conversation_list
+
+
+@router.put("/unit", response_model=List[Conversation])
+def update_conversation_unit():
+    return
+
+
+#  rd conver list
+#  crud conver unit
