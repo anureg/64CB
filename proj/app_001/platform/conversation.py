@@ -43,12 +43,10 @@ async def read_conver():
 
 @router.post("/", response_model=List[Conversation])
 async def create_conver(conver: Conversation):
+   
     con = conver.dict()
-
     con["_id"] = str(myuuid)
-    print(con)
 
     fake_db_conversation.append(con)
 
-    print(fake_db_conversation)
     return fake_db_conversation
