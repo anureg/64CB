@@ -35,9 +35,6 @@ class Conversation(BaseModel):
     conver_name: str
     description: Union[str, None] = None
 
-    class Config:
-        _id: myuuid
-
 
 @router.get("/list", response_model=List[Conversation])
 async def get_conversation_unit_list():
@@ -58,8 +55,7 @@ async def create_conver(conver: Conversation):
     con = conver.dict()
     # add oid
     # https://pymongo.readthedocs.io/en/stable/tutorial.html#inserting-a-document
-    # con["_id"] = str(myuuid)
-    print(con)
+    con["_id"] = str(myuuid)
 
     # add data to database
     fake_res_conversation_list.append(con)
