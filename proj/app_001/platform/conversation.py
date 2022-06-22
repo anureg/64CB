@@ -44,10 +44,12 @@ async def get_conversation_unit_list():
 
 @router.delete("/list", response_model=List[Conversation])
 async def delete_conversation_unit_list(ListName: List[str]):
-    print(ListName)
-    ListNameDel = [item['conver_name'] for item in ListName]
     # delete many
-    # 
+    for name in ListName:
+        for conver in fake_res_conversation_list:
+            if conver['conver_name'] == name:
+                fake_res_conversation_list.remove(conver)
+
     return fake_res_conversation_list
 
 
