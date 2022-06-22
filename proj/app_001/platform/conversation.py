@@ -35,6 +35,9 @@ class Conversation(BaseModel):
     conver_name: str
     description: Union[str, None] = None
 
+class ConversationList(BaseModel):
+    conversations: List(Conversation)
+
 
 @router.get("/list", response_model=List[Conversation])
 async def get_conversation_unit_list():
@@ -43,8 +46,8 @@ async def get_conversation_unit_list():
 
 
 @router.delete("/list", response_model=List[Conversation])
-async def delete_conversation_unit_list(ListNameDel: [str]):
-    # delete many
+async def delete_conversation_unit_list(ListNameDel):
+   # delete many
     [conver for conver in fake_res_conversation_list for unitD in ListNameDel if unitD ==
         conver['conver_name']]
     return fake_res_conversation_list
