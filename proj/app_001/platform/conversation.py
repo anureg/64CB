@@ -69,8 +69,16 @@ async def create_conver(conver: Conversation):
 
 
 @router.put("/unit", response_model=List[Conversation])
-def update_conversation_unit():
-    return
+async def update_conversation_unit():
+    return fake_res_conversation_list
+
+@router.get("/unit")
+async def get_conversation_unit(name: str):
+    for conver in fake_res_conversation_list:
+            if conver['conver_name'] == name:
+                return conver
+            else:
+                return "Not find"
 
 
 #  rd conver list
