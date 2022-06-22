@@ -80,16 +80,3 @@ def get_Icon(icon_name: str,):
     if os.path.exists(file_path):
         return FileResponse(file_path)
     return {"error": "File not found!"}
-
-
-class ChatHistory(BaseModel):
-    Chat_Token: int
-    Chat_Type: str
-    Chat_Msg: str
-    Chat_Timestamp: str
-
-
-@router.get("/chat/", response_model=List[ChatHistory])
-async def read_chat():
-    fake_db_chat_his = load_json('fake_db_chat_historys.json')
-    return fake_db_chat_his
