@@ -31,7 +31,7 @@ myuuid = uuid.uuid4()
 
 
 class Conversation(BaseModel):
-    # _id: str
+    _id: str
     conver_name: str
     description: Union[str, None] = None
 
