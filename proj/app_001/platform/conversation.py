@@ -101,7 +101,15 @@ def create_conversation_unit(conversation: Conversation):
 
 @router.get("/unit", response_model=List[Conversation], tags=["Conversation Unit"])
 def get_conversation_unit(name: str):
-    return fake_res_conversation_list[0]
+    res = [
+        {
+            "_id": "62b173c605350640d79f2352",
+            "conver_name": "00-2-1-GreetingUser-TH",
+            "description": "ทักทายภาษาไทย",
+        },
+    ]
+    
+    return res
 
 
 @router.put("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
