@@ -10,17 +10,17 @@ router = APIRouter(
 
 fake_res_conversation_list = [
     {
-        "_id": "62b173c605350640d79f2352",
+        "id": "62b173c605350640d79f2352",
         "conver_name": "00-2-1-GreetingUser-TH",
         "description": "ทักทายภาษาไทย",
     },
     {
-        "_id": "62b173ec05350640d79f2354",
+        "id": "62b173ec05350640d79f2354",
         "conver_name": "02-1-2-โทรศัพท์ DSI",
         "description": "เบอร์โทรศัพท์ DSI"
     },
     {
-        "_id": "62b173f005350640d79f2355",
+        "id": "62b173f005350640d79f2355",
         "conver_name": "02-2-3-บริการ-ร้องเรียน ร้องทุกข์ แจ้งเบาะแส",
         "description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส"
     }
@@ -30,7 +30,7 @@ myuuid = uuid.uuid4()
 
 
 class Conversation(BaseModel):
-    _id: str
+    id: str
     conver_name: str
     description: Union[str, None] = None
 
@@ -52,7 +52,7 @@ def delete_conversation_unit_list(ListName: List[str]):
 
     res = [
         {
-            "_id": "",
+            "id": "",
             "conver_name": "deleted",
             "description": "ลบข้อมูลเรียบร้อยแล้ว",
         },
@@ -68,29 +68,29 @@ def create_conversation_unit(conversation: Conversation):
     # con = conversation.dict()
     # # add oid
     # # https://pymongo.readthedocs.io/en/stable/tutorial.html#inserting-a-document
-    # con["_id"] = str(myuuid)
+    # con["id"] = str(myuuid)
 
     # # add data to database
     # fake_res_conversation_list.append(con)
 
     res = [
         {
-            "_id": "62b173c605350640d79f2352",
+            "id": "62b173c605350640d79f2352",
             "conver_name": "00-2-1-GreetingUser-TH",
             "description": "ทักทายภาษาไทย",
         },
         {
-            "_id": "62b173ec05350640d79f2354",
+            "id": "62b173ec05350640d79f2354",
             "conver_name": "02-1-2-โทรศัพท์ DSI",
             "description": "เบอร์โทรศัพท์ DSI"
         },
         {
-            "_id": "62b173f005350640d79f2355",
+            "id": "62b173f005350640d79f2355",
             "conver_name": "02-2-3-บริการ-ร้องเรียน ร้องทุกข์ แจ้งเบาะแส",
             "description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส"
         },
         {
-            "_id": "",
+            "id": "",
             "conver_name": "created",
             "description": "เพิ่มข้อมูลเรียบร้อยแล้วจ้า",
         }
@@ -103,12 +103,12 @@ def create_conversation_unit(conversation: Conversation):
 def get_conversation_unit(name: str):
     res = [
         {
-            "_id": "62b173c605350640d79f2352",
+            "id": "62b173c605350640d79f2352",
             "conver_name": "00-2-1-GreetingUser-TH",
             "description": "ทักทายภาษาไทย",
         },
     ]
-    
+
     return res
 
 
@@ -116,17 +116,17 @@ def get_conversation_unit(name: str):
 def update_conversation_unit(conversation: Conversation):
     res = [
         {
-            "_id": "62b173c605350640d79f2352",
+            "id": "62b173c605350640d79f2352",
             "conver_name": "00-2-1-GreetingUser-TH",
             "description": "ทักทายภาษาไทย",
         },
         {
-            "_id": "62b173ec05350640d79f2354",
+            "id": "62b173ec05350640d79f2354",
             "conver_name": "02-1-2-โทรศัพท์ DSI",
             "description": "เบอร์โทรศัพท์ DSI"
         },
         {
-            "_id": "62b173f005350640d79f2355",
+            "id": "62b173f005350640d79f2355",
             "conver_name": "update",
             "description": "แก้ไขข้อมูลเรียบร้อย",
         }
@@ -139,12 +139,12 @@ def update_conversation_unit(conversation: Conversation):
 def delete_conversation_unit(name: str):
     res = [
         {
-            "_id": "62b173c605350640d79f2352",
+            "id": "62b173c605350640d79f2352",
             "conver_name": "00-2-1-GreetingUser-TH",
             "description": "ทักทายภาษาไทย",
         },
         {
-            "_id": "62b173ec05350640d79f2354",
+            "id": "62b173ec05350640d79f2354",
             "conver_name": "02-1-2-โทรศัพท์ DSI",
             "description": "เบอร์โทรศัพท์ DSI"
         },
