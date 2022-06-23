@@ -54,7 +54,7 @@ class login_res(BaseModel):
 @router.post("/", response_model=login_res, response_model_exclude_unset=True)
 async def login_platform(login: login_req):
     """
-    user login
+    user login\n
     {
         "user_Username": "uname1",
         "user_Password": "pass1"
@@ -84,11 +84,11 @@ async def login_platform(login: login_req):
 @router.get("/GetIcon")
 def get_Icon(icon_name: str,):
     """
-    icon_name = "user_ImageProfile": "6219bc9ba8a68a763a9ae90e.png"
-    or
+    icon_name = "user_ImageProfile": "6219bc9ba8a68a763a9ae90e.png"\n
+    or\n
     icon_name = "/app/proj/app_001/platform/icon_users/6219bc9ba8a68a763a9ae90e.png"
     """
-    
+
     file_path = os.path.join(path_ImageProfile, icon_name)
     if os.path.exists(file_path):
         return FileResponse(file_path)

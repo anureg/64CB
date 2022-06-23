@@ -42,8 +42,8 @@ def get_conversation_unit_list():
 def delete_conversation_unit_list(listId: List[str]):
     # delete all or one
     """
-    listId = ["1","2"]
-    or
+    listId = ["1","2"]\n
+    or\n
     listId = ["1"]
     """
     res = [
@@ -90,7 +90,7 @@ def create_conversation_unit(conversation: Conversation):
 def get_conversation_unit(id: str):
     # read one
     """
-    find by id
+    find by id\n
     id = "62b173c605350640d79f2352"
     """
     res = [
