@@ -50,7 +50,15 @@ def delete_conversation_unit_list(ListName: List[str]):
     #         if conver['conver_name'] == name:
     #             fake_res_conversation_list.remove(conver)
 
-    return fake_res_conversation_list
+    res = [
+        {
+            "_id": "",
+            "conver_name": "deleted",
+            "description": "ลบข้อมูลเรียบร้อยแล้ว",
+        },
+    ]
+
+    return res
 
 
 @router.post("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
@@ -65,19 +73,73 @@ def create_conversation_unit(conversation: Conversation):
     # # add data to database
     # fake_res_conversation_list.append(con)
 
-    return fake_res_conversation_list
+    res = [
+        {
+            "_id": "62b173c605350640d79f2352",
+            "conver_name": "00-2-1-GreetingUser-TH",
+            "description": "ทักทายภาษาไทย",
+        },
+        {
+            "_id": "62b173ec05350640d79f2354",
+            "conver_name": "02-1-2-โทรศัพท์ DSI",
+            "description": "เบอร์โทรศัพท์ DSI"
+        },
+        {
+            "_id": "62b173f005350640d79f2355",
+            "conver_name": "02-2-3-บริการ-ร้องเรียน ร้องทุกข์ แจ้งเบาะแส",
+            "description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส"
+        },
+        {
+            "_id": "",
+            "conver_name": "created",
+            "description": "เพิ่มข้อมูลเรียบร้อยแล้วจ้า",
+        }
+    ]
+
+    return res
 
 
-@router.get("/unit", tags=["Conversation Unit"])
+@router.get("/unit", response_model=List[Conversation], tags=["Conversation Unit"])
 def get_conversation_unit(name: str):
     return fake_res_conversation_list[0]
 
 
 @router.put("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
 def update_conversation_unit(conversation: Conversation):
-    return fake_res_conversation_list
+    res = [
+        {
+            "_id": "62b173c605350640d79f2352",
+            "conver_name": "00-2-1-GreetingUser-TH",
+            "description": "ทักทายภาษาไทย",
+        },
+        {
+            "_id": "62b173ec05350640d79f2354",
+            "conver_name": "02-1-2-โทรศัพท์ DSI",
+            "description": "เบอร์โทรศัพท์ DSI"
+        },
+        {
+            "_id": "62b173f005350640d79f2355",
+            "conver_name": "update",
+            "description": "แก้ไขข้อมูลเรียบร้อย",
+        }
+    ]
+
+    return res
 
 
 @router.delete("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
 def delete_conversation_unit(name: str):
-    return fake_res_conversation_list
+    res = [
+        {
+            "_id": "62b173c605350640d79f2352",
+            "conver_name": "00-2-1-GreetingUser-TH",
+            "description": "ทักทายภาษาไทย",
+        },
+        {
+            "_id": "62b173ec05350640d79f2354",
+            "conver_name": "02-1-2-โทรศัพท์ DSI",
+            "description": "เบอร์โทรศัพท์ DSI"
+        },
+    ]
+
+    return res
