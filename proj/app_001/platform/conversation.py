@@ -1,4 +1,3 @@
-import uuid
 from fastapi import APIRouter
 
 from pydantic import BaseModel
@@ -26,8 +25,6 @@ fake_res_conversation_list = [
     }
 ]
 
-myuuid = uuid.uuid4()
-
 
 class Conversation(BaseModel):
     id: str
@@ -42,14 +39,13 @@ def get_conversation_unit_list():
 
 
 @router.delete("/list", tags=["Conversation List"], response_model=List[Conversation])
-def delete_conversation_unit_list(ListName: List[str]):
-
-    # # delete many
-    # for name in ListName:
-    #     for conver in fake_res_conversation_list:
-    #         if conver['conver_name'] == name:
-    #             fake_res_conversation_list.remove(conver)
-
+def delete_conversation_unit_list(listId: List[str]):
+    # delete all or one
+    """
+    listId = ["1","2"]
+    or
+    listId = ["1"]
+    """
     res = [
         {
             "id": "",
@@ -63,16 +59,7 @@ def delete_conversation_unit_list(ListName: List[str]):
 
 @router.post("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
 def create_conversation_unit(conversation: Conversation):
-
-    # # convert BaseModel to dict
-    # con = conversation.dict()
-    # # add oid
-    # # https://pymongo.readthedocs.io/en/stable/tutorial.html#inserting-a-document
-    # con["id"] = str(myuuid)
-
-    # # add data to database
-    # fake_res_conversation_list.append(con)
-
+    # create
     res = [
         {
             "id": "62b173c605350640d79f2352",
@@ -100,7 +87,12 @@ def create_conversation_unit(conversation: Conversation):
 
 
 @router.get("/unit", response_model=List[Conversation], tags=["Conversation Unit"])
-def get_conversation_unit(name: str):
+def get_conversation_unit(id: str):
+    # read one
+    """
+    find by id
+    id = "62b173c605350640d79f2352"
+    """
     res = [
         {
             "id": "62b173c605350640d79f2352",
@@ -114,6 +106,14 @@ def get_conversation_unit(name: str):
 
 @router.put("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
 def update_conversation_unit(conversation: Conversation):
+    # update one
+    """
+    {
+        "id": "62b173f005350640d79f2355",
+        "conver_name": "update",
+        "description": "แก้ไขข้อมูลเรียบร้อย",
+    }
+    """
     res = [
         {
             "id": "62b173c605350640d79f2352",
@@ -130,24 +130,6 @@ def update_conversation_unit(conversation: Conversation):
             "conver_name": "update",
             "description": "แก้ไขข้อมูลเรียบร้อย",
         }
-    ]
-
-    return res
-
-
-@router.delete("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
-def delete_conversation_unit(name: str):
-    res = [
-        {
-            "id": "62b173c605350640d79f2352",
-            "conver_name": "00-2-1-GreetingUser-TH",
-            "description": "ทักทายภาษาไทย",
-        },
-        {
-            "id": "62b173ec05350640d79f2354",
-            "conver_name": "02-1-2-โทรศัพท์ DSI",
-            "description": "เบอร์โทรศัพท์ DSI"
-        },
     ]
 
     return res
