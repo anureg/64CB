@@ -31,6 +31,10 @@ class Conversation(BaseModel):
     conver_name: str
     description: Union[str, None] = None
 
+class CreateConver(BaseModel):
+    conver_name: str
+    description: Union[str, None] = None
+
 
 @router.get("/list", tags=["Conversation List"], response_model=List[Conversation])
 def get_conversation_unit_list():
@@ -58,8 +62,14 @@ def delete_conversation_unit_list(listId: List[str]):
 
 
 @router.post("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
-def create_conversation_unit(conversation: Conversation):
+def create_conversation_unit(conversation: CreateConver):
     # create
+    """
+    {
+        "conver_name": "created",
+        "description": "เพิ่มข้อมูลเรียบร้อยแล้วจ้า",
+    }
+    """
     res = [
         {
             "id": "62b173c605350640d79f2352",
@@ -77,7 +87,7 @@ def create_conversation_unit(conversation: Conversation):
             "description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส"
         },
         {
-            "id": "",
+            "id": "mongo gen id",
             "conver_name": "created",
             "description": "เพิ่มข้อมูลเรียบร้อยแล้วจ้า",
         }
