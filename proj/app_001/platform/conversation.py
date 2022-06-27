@@ -31,7 +31,9 @@ class Conversation(BaseModel):
     conver_name: str
     description: Union[str, None] = None
 
+
 class CreateConver(BaseModel):
+    # _id: str  # ตอนสร้าง conver ใหม่ ไม่ต้องใช้ _id เพราะ ให้ mongodb สร้าง objectId มาให้
     conver_name: str
     description: Union[str, None] = None
 
@@ -39,7 +41,25 @@ class CreateConver(BaseModel):
 @router.get("/list", tags=["Conversation List"], response_model=List[Conversation])
 def get_conversation_unit_list():
     # read all
-    return fake_res_conversation_list
+    res = [
+        {
+            "id": "62b173c605350640d79f2352",
+            "conver_name": "00-2-1-GreetingUser-TH",
+            "description": "ทักทายภาษาไทย",
+        },
+        {
+            "id": "62b173ec05350640d79f2354",
+            "conver_name": "02-1-2-โทรศัพท์ DSI",
+            "description": "เบอร์โทรศัพท์ DSI"
+        },
+        {
+            "id": "62b173f005350640d79f2355",
+            "conver_name": "02-2-3-บริการ-ร้องเรียน ร้องทุกข์ แจ้งเบาะแส",
+            "description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส"
+        }
+    ]
+
+    return res
 
 
 @router.delete("/list", tags=["Conversation List"], response_model=List[Conversation])
