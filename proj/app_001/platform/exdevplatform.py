@@ -51,7 +51,7 @@ class login_res(BaseModel):
     user_ImageProfile: Union[str, None] = None
 
 
-@router.post("/", response_model=login_res)
+@router.post("/", response_model=login_res, response_model_exclude_unset=True)
 async def login_platform(login: login_req):
     """
     user login\n
