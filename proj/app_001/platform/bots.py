@@ -39,7 +39,7 @@ class Bot(BaseModel):
 class CreateBot(BaseModel):
     # _id: str  # ตอนสร้าง conver ใหม่ ไม่ต้องใช้ _id เพราะ ให้ mongodb สร้าง objectId มาให้
     Bot_Name: str
-    Bot_Status: False
+    # Bot_Status: False
     description: Union[str, None] = None
 
 
@@ -77,7 +77,6 @@ def create_conversation_unit(conversation: CreateBot):
     """
     {
         "Bot_Name": "created",
-        "Bot_Status": "False",
         "description": "เพิ่มข้อมูลเรียบร้อยแล้วจ้า",
     }
     """
