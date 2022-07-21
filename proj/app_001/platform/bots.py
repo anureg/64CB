@@ -12,19 +12,19 @@ fake_res_bot_list = [
         "id": "62afee6ce854c9d406b5815f",
         "Bot_Name": "bot1",
         "Bot_Picture_Name": "62afee6ce854c9d406b5815f.png",
-        "Bot_Status": False,
+        "Bot_Status": "False",
     },
     {
         "id": "62afee98e854c9d406b58160",
         "Bot_Name": "bot2",
         "Bot_Picture_Name": "62afee98e854c9d406b58160.png",
-        "Bot_Status": False,
+        "Bot_Status": "False",
     },
     {
         "id": "62afeea5e854c9d406b58161",
         "Bot_Name": "bot3",
         "Bot_Picture_Name": "62afeea5e854c9d406b58161.png",
-        "Bot_Status": False,
+        "Bot_Status": "False",
     },
 ]
 
@@ -33,14 +33,14 @@ class Bot(BaseModel):
     id: str
     Bot_Name: str
     Bot_Status: bool
-    # description: Union[str, None] = None
+    description: Union[str, None] = None
 
 
 class CreateBot(BaseModel):
     # _id: str  # ตอนสร้าง conver ใหม่ ไม่ต้องใช้ _id เพราะ ให้ mongodb สร้าง objectId มาให้
     Bot_Name: str
     Bot_Status: False
-    # description: Union[str, None] = None
+    description: Union[str, None] = None
 
 
 @router.get("/list", tags=["Bot List"], response_model=list[Bot])
@@ -63,7 +63,7 @@ def delete_bot_unit_list(listId: list[str]):
         {
             "id": "",
             "Bot_Name": "deleted",
-            "Bot_Status": False,
+            "Bot_Status": "False",
             "description": "ลบข้อมูลเรียบร้อยแล้ว",
         },
     ]
@@ -77,7 +77,7 @@ def create_conversation_unit(conversation: CreateBot):
     """
     {
         "Bot_Name": "created",
-        "Bot_Status": False,
+        "Bot_Status": "False",
         "description": "เพิ่มข้อมูลเรียบร้อยแล้วจ้า",
     }
     """
@@ -85,7 +85,7 @@ def create_conversation_unit(conversation: CreateBot):
         {
             "id": "mongo gen id",
             "Bot_Name": "created",
-            "Bot_Status": False,
+            "Bot_Status": "False",
             "Bot_Picture_Name": "mongo gen id.png",
             "description": "เพิ่มข้อมูลเรียบร้อยแล้วจ้า",
         }
@@ -106,7 +106,7 @@ def get_bot_unit(id: str):
             "_id": "62afee6ce854c9d406b5815f",
             "Bot_Name": "bot1",
             "Bot_Picture_Name": "62afee6ce854c9d406b5815f.png",
-            "Bot_Status": False,
+            "Bot_Status": "False",
         },
     ]
 
@@ -121,7 +121,7 @@ def update_bot_unit(conversation: Bot):
         "id": "62afee6ce854c9d406b5815f",
         "Bot_Name": "bot1",
         "Bot_Picture_Name": "62afee6ce854c9d406b5815f.png",
-        "Bot_Status": False,
+        "Bot_Status": "False",
         "description": "แก้ไขข้อมูลเรียบร้อย",
     }
     """
@@ -130,20 +130,20 @@ def update_bot_unit(conversation: Bot):
             "id": "62afee6ce854c9d406b5815f",
             "Bot_Name": "bot1",
             "Bot_Picture_Name": "62afee6ce854c9d406b5815f.png",
-            "Bot_Status": False,
+            "Bot_Status": "False",
             "description": "แก้ไขข้อมูลเรียบร้อย",
         },
         {
             "id": "62afee98e854c9d406b58160",
             "Bot_Name": "bot2",
             "Bot_Picture_Name": "62afee98e854c9d406b58160.png",
-            "Bot_Status": False,
+            "Bot_Status": "False",
         },
         {
             "id": "62afeea5e854c9d406b58161",
             "Bot_Name": "bot3",
             "Bot_Picture_Name": "62afeea5e854c9d406b58161.png",
-            "Bot_Status": False,
+            "Bot_Status": "False",
         },
     ]
 
