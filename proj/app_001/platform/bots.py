@@ -33,14 +33,14 @@ class Bot(BaseModel):
     id: str
     Bot_Name: str
     Bot_Status: bool
-    description: Union[str, None] = None
+    # description: Union[str, None] = None
 
 
 class CreateBot(BaseModel):
     # _id: str  # ตอนสร้าง conver ใหม่ ไม่ต้องใช้ _id เพราะ ให้ mongodb สร้าง objectId มาให้
     Bot_Name: str
     Bot_Status: False
-    description: Union[str, None] = None
+    # description: Union[str, None] = None
 
 
 @router.get("/list", tags=["Bot List"], response_model=list[Bot])
