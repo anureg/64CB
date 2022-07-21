@@ -16,13 +16,13 @@ fake_res_conversation_list = [
     {
         "id": "62b173ec05350640d79f2354",
         "conver_name": "02-1-2-โทรศัพท์ DSI",
-        "description": "เบอร์โทรศัพท์ DSI"
+        "description": "เบอร์โทรศัพท์ DSI",
     },
     {
         "id": "62b173f005350640d79f2355",
         "conver_name": "02-2-3-บริการ-ร้องเรียน ร้องทุกข์ แจ้งเบาะแส",
-        "description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส"
-    }
+        "description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส",
+    },
 ]
 
 
@@ -50,13 +50,13 @@ def get_conversation_unit_list():
         {
             "id": "62b173ec05350640d79f2354",
             "conver_name": "02-1-2-โทรศัพท์ DSI",
-            "description": "เบอร์โทรศัพท์ DSI"
+            "description": "เบอร์โทรศัพท์ DSI",
         },
         {
             "id": "62b173f005350640d79f2355",
             "conver_name": "02-2-3-บริการ-ร้องเรียน ร้องทุกข์ แจ้งเบาะแส",
-            "description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส"
-        }
+            "description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส",
+        },
     ]
 
     return res
@@ -64,7 +64,7 @@ def get_conversation_unit_list():
 
 @router.delete("/list", tags=["Conversation List"], response_model=List[Conversation])
 def delete_conversation_unit_list(listId: List[str]):
-    # delete all or one
+    # delete many or one
     """
     listId = ["1","2"]\n
     or\n
@@ -99,18 +99,18 @@ def create_conversation_unit(conversation: CreateConver):
         {
             "id": "62b173ec05350640d79f2354",
             "conver_name": "02-1-2-โทรศัพท์ DSI",
-            "description": "เบอร์โทรศัพท์ DSI"
+            "description": "เบอร์โทรศัพท์ DSI",
         },
         {
             "id": "62b173f005350640d79f2355",
             "conver_name": "02-2-3-บริการ-ร้องเรียน ร้องทุกข์ แจ้งเบาะแส",
-            "description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส"
+            "description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส",
         },
         {
             "id": "mongo gen id",
             "conver_name": "created",
             "description": "เพิ่มข้อมูลเรียบร้อยแล้วจ้า",
-        }
+        },
     ]
 
     return res
@@ -153,13 +153,13 @@ def update_conversation_unit(conversation: Conversation):
         {
             "id": "62b173ec05350640d79f2354",
             "conver_name": "02-1-2-โทรศัพท์ DSI",
-            "description": "เบอร์โทรศัพท์ DSI"
+            "description": "เบอร์โทรศัพท์ DSI",
         },
         {
             "id": "62b173f005350640d79f2355",
             "conver_name": "update",
             "description": "แก้ไขข้อมูลเรียบร้อย",
-        }
+        },
     ]
 
     return res

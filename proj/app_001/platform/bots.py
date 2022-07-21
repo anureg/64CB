@@ -32,14 +32,16 @@ fake_res_bot_list = [
 class Bot(BaseModel):
     id: str
     Bot_Name: str
+    Bot_Picture_Name: str
     Bot_Status: bool
     description: Union[str, None] = None
 
 
 class CreateBot(BaseModel):
-    # _id: str  # ตอนสร้าง conver ใหม่ ไม่ต้องใช้ _id เพราะ ให้ mongodb สร้าง objectId มาให้
+    # _id: str  # ตอนสร้าง bot ใหม่ ไม่ต้องใช้ _id เพราะ ให้ mongodb สร้าง objectId มาให้
     Bot_Name: str
-    # Bot_Status: False
+    # Bot_Picture_Name: str  # ตอนสร้าง bot ใหม่ เอา id มาเป็นชื่อ
+    # Bot_Status: False  # ตอนสร้าง bot ใหม่ ตั้งให้เป็น false
     description: Union[str, None] = None
 
 
@@ -53,7 +55,7 @@ def get_bot_unit_list():
 
 @router.delete("/list", tags=["Bot List"], response_model=list[Bot])
 def delete_bot_unit_list(listId: list[str]):
-    # delete all or one
+    # delete many or one
     """
     listId = ["1","2"]\n
     or\n
@@ -102,7 +104,7 @@ def get_bot_unit(id: str):
     """
     res = [
         {
-            "_id": "62afee6ce854c9d406b5815f",
+            "id": "62afee6ce854c9d406b5815f",
             "Bot_Name": "bot1",
             "Bot_Picture_Name": "62afee6ce854c9d406b5815f.png",
             "Bot_Status": "False",
