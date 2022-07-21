@@ -71,8 +71,8 @@ def delete_bot_unit_list(listId: list[str]):
     return res
 
 
-@router.post("/unit", tags=["Conversation Unit"], response_model=list[Bot])
-def create_conversation_unit(conversation: CreateBot):
+@router.post("/unit", tags=["Bot Unit"], response_model=list[Bot])
+def create_bot_unit(bot: CreateBot):
     # create
     """
     {
@@ -113,7 +113,7 @@ def get_bot_unit(id: str):
 
 
 @router.put("/unit", tags=["Bot Unit"], response_model=list[Bot])
-def update_bot_unit(conversation: Bot):
+def update_bot_unit(bot: Bot):
     # update one
     """
     {
