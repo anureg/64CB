@@ -65,6 +65,7 @@ def delete_bot_unit_list(listId: list[str]):
         {
             "id": "",
             "Bot_Name": "deleted",
+            "Bot_Picture_Name": "delete.png",
             "Bot_Status": "False",
             "description": "ลบข้อมูลเรียบร้อยแล้ว",
         },
