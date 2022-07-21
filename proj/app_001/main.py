@@ -12,7 +12,7 @@ app = FastAPI()
 app.include_router(exdevchat.router)
 app.include_router(exdevplatform.router)
 app.include_router(conversation.router)
-app.include_router(bots.router)
+# app.include_router(bots.router)
 
 # CORS (Cross-Origin Resource Sharing)
 # ["https://localhost","http://localhost","http://localhost:8080"]
