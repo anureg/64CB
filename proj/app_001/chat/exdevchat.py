@@ -152,8 +152,8 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
     return {
         "token": device_token,
         "TimeSend": datetime.now(tz=timezone(timedelta(hours=7))).isoformat(sep=" "),
-        "TimeAns": "2022-06-07 15:04:58.408218+07:00",
         "msgSend": msg,
+        "TimeAns": "2022-06-07 15:04:58.408218+07:00",
         "context": contextAns,
     }
 
