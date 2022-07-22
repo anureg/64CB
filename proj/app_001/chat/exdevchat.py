@@ -1,4 +1,3 @@
-from numpy import imag
 from fastapi import APIRouter
 
 from fastapi.responses import FileResponse
