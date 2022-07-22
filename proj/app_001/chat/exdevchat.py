@@ -108,9 +108,19 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
                 button=[
                     ButtonMsg(
                         button_type="Text",
-                        button_name="ไปที่เมนู",
-                        button_val="ไปที่เมนู",
-                    )
+                        button_name="ไปที่เมนู1",
+                        button_val="ไปที่เมนู1",
+                    ),
+                    ButtonMsg(
+                        button_type="Link",
+                        button_name="ไปที่เมนู2",
+                        button_val="ไปที่เมนู2",
+                    ),
+                    ButtonMsg(
+                        button_type="Phone",
+                        button_name="โทรออก",
+                        button_val="028319888",
+                    ),
                 ],
             ),
         ]
