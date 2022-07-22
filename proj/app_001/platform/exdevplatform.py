@@ -42,7 +42,7 @@ class login_req(BaseModel):
 
 
 class login_res(BaseModel):
-    StatusLogin: str
+    status_login: str
     token: Union[int, None] = None
     user_id: Union[str, None] = None
     user_Username: Union[str, None] = None
