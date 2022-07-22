@@ -1,7 +1,7 @@
 import os
 import json
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 
 from pydantic import BaseModel
@@ -64,10 +64,11 @@ async def login_platform(login: login_req):
     fake_db_users = load_json("fake_db_users.json")
     for item in fake_db_users:
         if (
-            login.username == item["user_Username"]
-            and login.password == item["user_Password"]
+            login.username != item["user_Username"]
+            or login.password != item["user_Password"]
         ):
-
+            raise HTTPException(status_code=404, detail="Not found")
+        else:
             user = item
             token = GenToken(id=login.device_id)
 
@@ -80,8 +81,6 @@ async def login_platform(login: login_req):
                 "user_Surname": str(user["user_Surname"]),
                 "user_ImageProfile": str(user["user_ImageProfile"]),
             }
-
-    return {"status_login": "Not Found"}
 
 
 @router.get("/GetIcon")
