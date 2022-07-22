@@ -11,8 +11,8 @@ from datetime import datetime, timezone, timedelta
 
 
 router = APIRouter(
-    prefix="/ExDevPlatform",
-    tags=["ExDevPlatform"],
+    prefix="/ExDevPlatform/Login",
+    tags=["ExDevPlatform/Login"],
 )
 
 
@@ -27,7 +27,7 @@ def GenToken(id):
 
 
 def load_json(filename: str):
-    with open(f'/app/proj/app_001/platform/fake_db/{filename}') as json_file:
+    with open(f"/app/proj/app_001/platform/fake_db/{filename}") as json_file:
         js_file = json.load(json_file)
         return js_file
 
@@ -61,9 +61,12 @@ async def login_platform(login: login_req):
     }
     """
 
-    fake_db_users = load_json('fake_db_users.json')
+    fake_db_users = load_json("fake_db_users.json")
     for item in fake_db_users:
-        if login.username == item["user_Username"] and login.password == item["user_Password"]:
+        if (
+            login.username == item["user_Username"]
+            and login.password == item["user_Password"]
+        ):
 
             user = item
             token = GenToken(id=login.device_id)
@@ -71,18 +74,18 @@ async def login_platform(login: login_req):
             return {
                 "StatusLogin": "Connect",
                 "token": int(token),
-                "user_id": str(user['_id']),
-                "user_Username": str(user['user_Username']),
-                "user_Name": str(user['user_Name']),
-                "user_Surname": str(user['user_Surname']),
-                "user_ImageProfile": str(path_ImageProfile + user['user_ImageProfile'])
+                "user_id": str(user["_id"]),
+                "user_Username": str(user["user_Username"]),
+                "user_Name": str(user["user_Name"]),
+                "user_Surname": str(user["user_Surname"]),
+                "user_ImageProfile": str(path_ImageProfile + user["user_ImageProfile"]),
             }
 
     return {"StatusLogin": "Login error"}
 
 
 @router.get("/GetIcon")
-def get_Icon(icon_name: str,):
+def get_Icon(icon_name: str):
     """
     icon_name = "user_ImageProfile": "6219bc9ba8a68a763a9ae90e.png"\n
     or\n

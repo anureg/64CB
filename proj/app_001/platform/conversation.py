@@ -1,10 +1,11 @@
 from fastapi import APIRouter
 
 from pydantic import BaseModel
-from typing import List, Union
+from typing import Union
+
 
 router = APIRouter(
-    prefix="/Conversation",
+    prefix="/ExDevPlatform/Conversation",
 )
 
 fake_res_conversation_list = [
@@ -38,7 +39,7 @@ class CreateConver(BaseModel):
     description: Union[str, None] = None
 
 
-@router.get("/list", tags=["Conversation List"], response_model=List[Conversation])
+@router.get("/list", tags=["Conversation List"], response_model=list[Conversation])
 def get_conversation_unit_list():
     # read all
     res = [
@@ -62,8 +63,8 @@ def get_conversation_unit_list():
     return res
 
 
-@router.delete("/list", tags=["Conversation List"], response_model=List[Conversation])
-def delete_conversation_unit_list(listId: List[str]):
+@router.delete("/list", tags=["Conversation List"], response_model=list[Conversation])
+def delete_conversation_unit_list(listId: list[str]):
     # delete many or one
     """
     listId = ["1","2"]\n
@@ -81,7 +82,7 @@ def delete_conversation_unit_list(listId: List[str]):
     return res
 
 
-@router.post("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
+@router.post("/unit", tags=["Conversation Unit"], response_model=list[Conversation])
 def create_conversation_unit(conversation: CreateConver):
     # create
     """
@@ -116,7 +117,7 @@ def create_conversation_unit(conversation: CreateConver):
     return res
 
 
-@router.get("/unit", response_model=List[Conversation], tags=["Conversation Unit"])
+@router.get("/unit", response_model=list[Conversation], tags=["Conversation Unit"])
 def get_conversation_unit(id: str):
     # read one
     """
@@ -134,7 +135,7 @@ def get_conversation_unit(id: str):
     return res
 
 
-@router.put("/unit", tags=["Conversation Unit"], response_model=List[Conversation])
+@router.put("/unit", tags=["Conversation Unit"], response_model=list[Conversation])
 def update_conversation_unit(conversation: Conversation):
     # update one
     """

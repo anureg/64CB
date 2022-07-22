@@ -3,8 +3,9 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import Union
 
+
 router = APIRouter(
-    prefix="/Bot",
+    prefix="/ExDevPlatform/Bot",
 )
 
 fake_res_bot_list = [
