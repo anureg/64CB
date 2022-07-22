@@ -11,6 +11,8 @@ from datetime import datetime, timezone, timedelta
 
 # button
 class ButtonMsg(BaseModel):
+    button_type: str  # Link, Phone, Text
+
     button_name: str
     button_val: str
 
@@ -22,9 +24,7 @@ class Cardmessage(BaseModel):
     description: Union[str, None] = None
 
     location: Union[str, None] = None  # map
-    buttonLink: Union[list[dict], None] = None  # button link url
-    buttonPhone: Union[list[dict], None] = None  # button phone number
-    buttonText: Union[list[dict], None] = None  # button text
+    button: Union[list[dict], None] = None  # ButtonMsg
     image: Union[str, None] = None  # picture
 
     file_path: Union[str, None] = None  # file
@@ -105,7 +105,13 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
             ),
             Cardmessage(
                 topic="หรือลองดูบริการจากเมนูไหม ?",
-                buttonText=[ButtonMsg(button_name="ไปที่เมนู", button_val="ไปที่เมนู")],
+                button=[
+                    ButtonMsg(
+                        button_type="Text",
+                        button_name="ไปที่เมนู",
+                        button_val="ไปที่เมนู",
+                    )
+                ],
             ),
         ]
 
