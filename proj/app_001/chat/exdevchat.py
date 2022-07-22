@@ -4,9 +4,15 @@ from fastapi.responses import FileResponse
 import os
 
 from pydantic import BaseModel
-from typing import List, Union
+from typing import Union
 
 from datetime import datetime, timezone, timedelta
+
+
+# button
+class ButtonMsg(BaseModel):
+    button_name: str
+    button_val: str
 
 
 # context
@@ -16,9 +22,9 @@ class Cardmessage(BaseModel):
     description: Union[str, None] = None
 
     location: Union[str, None] = None  # map
-    buttonLink: List[str] = []  # button link url
-    buttonPhone: List[str] = []  # button phone number
-    buttonText: List[str] = []  # button text
+    buttonLink: Union[list[dict], None] = None  # button link url
+    buttonPhone: Union[list[dict], None] = None  # button phone number
+    buttonText: Union[list[dict], None] = None  # button text
     image: Union[str, None] = None  # picture
 
     file_path: Union[str, None] = None  # file
@@ -40,79 +46,75 @@ def welcome(device_id: str):
     token = hash(device_id + timestr)  # type token int
 
     context = Cardmessage(
-        topic='สวัสดี ฉันคือ บอท',
-        subtopic='มีอะไรให้ฉันช่วยไหม',
+        topic="สวัสดี ฉันคือ บอท",
+        subtopic="มีอะไรให้ฉันช่วยไหม",
     )
 
-    return {
-        "token": token,
-        "Time": timestr,
-        "context": context
-    }
+    return {"token": token, "Time": timestr, "context": context}
 
 
 @router.get("/ChatMsg")
 def chat_msg(msg: str, device_token: int, contextSend: str):
 
-    if msg == 'text':
+    if msg == "text":
         contextAns = Cardmessage(
-            topic='ข้อความ',
+            topic="ข้อความ",
         )
-    elif msg == 'case1':
+    elif msg == "case1":
         contextAns = Cardmessage(
-            topic='card1',
-            subtopic='คลิกเลือก website ที่ต้องการ :',
+            topic="card1",
+            subtopic="คลิกเลือก website ที่ต้องการ :",
             buttonText=[
-                'เข้าสู่เว็บไซต์ google',
-                'https://www.google.com/',
-                'เข้าสู่เว็บไซต์ youtube',
-                'https://www.youtube.com/',
+                "เข้าสู่เว็บไซต์ google",
+                "https://www.google.com/",
+                "เข้าสู่เว็บไซต์ youtube",
+                "https://www.youtube.com/",
             ],
         )
-    elif msg == 'case2':
+    elif msg == "case2":
         contextAns = Cardmessage(
-            topic='card2',
-            subtopic='คลิกเลือกรายการที่ต้องการ :',
+            topic="card2",
+            subtopic="คลิกเลือกรายการที่ต้องการ :",
             buttonText=[
-                'select item 1',
-                'show item 1',
-                'select item 2',
-                'show item 2',
-                'select item 3',
-                'show item 3',
+                "select item 1",
+                "show item 1",
+                "select item 2",
+                "show item 2",
+                "select item 3",
+                "show item 3",
             ],
         )
-    elif msg == 'case3':
+    elif msg == "case3":
         contextAns = Cardmessage(
-            topic='card3',
-            subtopic='หมายเลข 0 2831 9888\nวันและเวลาราชการ (08.30-16.30)',
+            topic="card3",
+            subtopic="หมายเลข 0 2831 9888\nวันและเวลาราชการ (08.30-16.30)",
             buttonPhone=[
-                'โทรออก',
-                '028319888',
+                {
+                    "button_name": "โทรออก",
+                    "button_value": "028319888",
+                }
             ],
         )
-    elif msg == 'case5':
-        contextAns = Cardmessage(
-            topic='test_pdf.pdf',
-            file_path='test_pdf.pdf'
-        )
+    elif msg == "case5":
+        contextAns = Cardmessage(topic="test_pdf.pdf", file_path="test_pdf.pdf")
 
     else:
-        contextAns = Cardmessage(
-            topic='ขออภัย กรุณาบอกใหม่อีกครั้ง',
-            subtopic='หรือลองดูบริการจากเมนูไหม ?',
-            buttonText=[
-                'ไปที่เมนู',
-                'ไปที่เมนู',
-            ],
-        )
+        contextAns = [
+            Cardmessage(
+                topic="ขออภัย กรุณาบอกใหม่อีกครั้ง",
+            ),
+            Cardmessage(
+                topic="หรือลองดูบริการจากเมนูไหม ?",
+                buttonText=[ButtonMsg(button_name="ไปที่เมนู", button_val="ไปที่เมนู")],
+            ),
+        ]
 
     return {
         "token": device_token,
         "TimeSend": datetime.now(tz=timezone(timedelta(hours=7))).isoformat(sep=" "),
         "TimeAns": "2022-06-07 15:04:58.408218+07:00",
         "msgSend": msg,
-        "context": contextAns
+        "context": contextAns,
     }
 
 
