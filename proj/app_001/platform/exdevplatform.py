@@ -78,7 +78,7 @@ async def login_platform(login: login_req):
                 "user_Username": str(user["user_Username"]),
                 "user_Name": str(user["user_Name"]),
                 "user_Surname": str(user["user_Surname"]),
-                "user_ImageProfile": str(path_ImageProfile + user["user_ImageProfile"]),
+                "user_ImageProfile": str(user["user_ImageProfile"]),
             }
 
     return {"status_login": "Not Found"}
