@@ -14,7 +14,7 @@ class ButtonMsg(BaseModel):
     button_type: str  # Link, Phone, Text
 
     button_name: str
-    button_val: str
+    button_value: str
 
 
 # context
@@ -57,46 +57,70 @@ def welcome(device_id: str):
 def chat_msg(msg: str, device_token: int, contextSend: str):
 
     if msg == "text":
-        contextAns = Cardmessage(
-            topic="ข้อความ",
-        )
+        contextAns = [
+            Cardmessage(
+                topic="ข้อความ",
+            )
+        ]
     elif msg == "case1":
-        contextAns = Cardmessage(
-            topic="card1",
-            subtopic="คลิกเลือก website ที่ต้องการ :",
-            buttonText=[
-                "เข้าสู่เว็บไซต์ google",
-                "https://www.google.com/",
-                "เข้าสู่เว็บไซต์ youtube",
-                "https://www.youtube.com/",
-            ],
-        )
+        contextAns = [
+            Cardmessage(
+                topic="card1",
+                subtopic="คลิกเลือก website ที่ต้องการ :",
+                button=[
+                    ButtonMsg(
+                        button_type="Link",
+                        button_name="เข้าสู่เว็บไซต์ google",
+                        button_value="https://www.google.com/",
+                    ),
+                    ButtonMsg(
+                        button_type="Link",
+                        button_name="เข้าสู่เว็บไซต์ youtube",
+                        button_value="https://www.youtube.com/",
+                    ),
+                ],
+            )
+        ]
     elif msg == "case2":
-        contextAns = Cardmessage(
-            topic="card2",
-            subtopic="คลิกเลือกรายการที่ต้องการ :",
-            buttonText=[
-                "select item 1",
-                "show item 1",
-                "select item 2",
-                "show item 2",
-                "select item 3",
-                "show item 3",
-            ],
-        )
+        contextAns = [
+            Cardmessage(
+                topic="card2",
+                subtopic="คลิกเลือกรายการที่ต้องการ :",
+                button=[
+                    ButtonMsg(
+                        button_type="Text",
+                        button_name="select item 1",
+                        button_value="show item 1",
+                    ),
+                    ButtonMsg(
+                        button_type="Text",
+                        button_name="select item 2",
+                        button_value="show item 2",
+                    ),
+                    ButtonMsg(
+                        button_type="Text",
+                        button_name="select item 3",
+                        button_value="show item 3",
+                    ),
+                ],
+            )
+        ]
     elif msg == "case3":
-        contextAns = Cardmessage(
-            topic="card3",
-            subtopic="หมายเลข 0 2831 9888\nวันและเวลาราชการ (08.30-16.30)",
-            buttonPhone=[
-                {
-                    "button_name": "โทรออก",
-                    "button_value": "028319888",
-                }
-            ],
-        )
+        contextAns = [
+            Cardmessage(
+                topic="card3",
+                subtopic="หมายเลข 0 2831 9888\nวันและเวลาราชการ (08.30-16.30)",
+                button=[
+                    ButtonMsg(
+                        button_type="Phone",
+                        button_name="โทรออก",
+                        button_value="028319888",
+                    ),
+                ],
+            )
+        ]
     elif msg == "case5":
-        contextAns = Cardmessage(topic="test_pdf.pdf", file_path="test_pdf.pdf")
+        contextAns = [Cardmessage(topic="test_pdf.pdf", file_path="test_pdf.pdf")]
 
     else:
         contextAns = [
@@ -109,17 +133,17 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
                     ButtonMsg(
                         button_type="Text",
                         button_name="ไปที่เมนู1",
-                        button_val="ไปที่เมนู1",
+                        button_value="ไปที่เมนู1",
                     ),
                     ButtonMsg(
                         button_type="Link",
                         button_name="ไปที่เมนู2",
-                        button_val="ไปที่เมนู2",
+                        button_value="ไปที่เมนู2",
                     ),
                     ButtonMsg(
                         button_type="Phone",
                         button_name="โทรออก",
-                        button_val="028319888",
+                        button_value="028319888",
                     ),
                 ],
             ),
