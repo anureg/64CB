@@ -12,7 +12,7 @@ from datetime import datetime, timezone, timedelta
 
 router = APIRouter(
     prefix="/ExDevPlatform/Login",
-    tags=["ExDevPlatform/Login"],
+    tags=["Login"],
 )
 
 
