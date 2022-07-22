@@ -1,3 +1,4 @@
+from numpy import imag
 from fastapi import APIRouter
 
 from fastapi.responses import FileResponse
@@ -17,13 +18,19 @@ class ButtonMsg(BaseModel):
     button_value: str
 
 
+# loacation
+class LocationMsg(BaseModel):
+    latitude: str
+    longitude: str
+
+
 # context
 class Cardmessage(BaseModel):
     topic: str
     subtopic: Union[str, None] = None
     description: Union[str, None] = None
 
-    location: Union[str, None] = None  # map
+    location: Union[dict, None] = None  # map
     button: Union[list[dict], None] = None  # ButtonMsg
     image: Union[str, None] = None  # picture
 
@@ -119,6 +126,17 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
                 ],
             )
         ]
+    elif msg == "case4":
+        contextAns = [
+            Cardmessage(
+                topic="ที่ตั้ง กรมสอบสวนคดีพิเศษ",
+                subtopic="128 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่ กรุงเทพฯ 10210",
+                location=LocationMsg(
+                    latitude="13.890572676895111", longitude="100.56562602445767"
+                ),
+                image="https://lh5.googleusercontent.com/p/AF1QipNazg2juzSt1RofZY_6u-hrjDY_SaEhtDq512dM=w408-h306-k-no",
+            )
+        ]
     elif msg == "case5":
         contextAns = [Cardmessage(topic="test_pdf.pdf", file_path="test_pdf.pdf")]
 
@@ -137,8 +155,8 @@ def chat_msg(msg: str, device_token: int, contextSend: str):
                     ),
                     ButtonMsg(
                         button_type="Link",
-                        button_name="ไปที่เมนู2",
-                        button_value="ไปที่เมนู2",
+                        button_name="เว็บไซต์กรมสอบสวนคดีพิเศษ",
+                        button_value="https://www.dsi.go.th/",
                     ),
                     ButtonMsg(
                         button_type="Phone",
