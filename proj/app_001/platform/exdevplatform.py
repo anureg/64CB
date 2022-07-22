@@ -72,7 +72,7 @@ async def login_platform(login: login_req):
             token = GenToken(id=login.device_id)
 
             return {
-                "status_login": "Success",  # status 200
+                "status_login": "Success",
                 "token": int(token),
                 "user_id": str(user["_id"]),
                 "user_Username": str(user["user_Username"]),
@@ -81,7 +81,7 @@ async def login_platform(login: login_req):
                 "user_ImageProfile": str(path_ImageProfile + user["user_ImageProfile"]),
             }
 
-    return {"status_login": "Not Found"}  # status404
+    return {"status_login": "Not Found"}
 
 
 @router.get("/GetIcon")
