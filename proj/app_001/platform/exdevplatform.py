@@ -68,12 +68,14 @@ async def login_platform(login: login_req):
     for item in fake_db_users:
         if login.login_Username == item["user_Username"]:
             user = item
+        else:
+            user = None
 
         if not user:
             raise HTTPException(status_code=404, detail="Not found")
         elif (
             login.login_Username != user["user_Username"]
-            or login.login_Username != user["user_Password"]
+            or login.login_Password != user["user_Password"]
         ):
             raise HTTPException(status_code=404, detail="error")
         else:
