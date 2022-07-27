@@ -70,23 +70,18 @@ async def login_platform(login: login_req):
             raise HTTPException(status_code=404, detail="Not found")
         else:
             user = item
-            token = GenToken(id=login.device_id)
 
-            return {
-                "status_login": "Success",
-                "token": int(token),
-                "user_id": str(user["_id"]),
-                "user_Username": str(user["user_Username"]),
-                "user_Name": str(user["user_Firstname"]),
-                "user_Surname": str(user["user_Lastname"]),
-                "user_ImageProfile": str(user["user_Picture"]),
-            }
+            user["status_login"] = "Success"
+            user["id"] = str(user["_id"])
+            user["token"] = GenToken(id=login.device_id)
+
+            return user
 
 
 @router.get("/GetIcon")
 def get_Icon(icon_name: str):
     """
-    icon_name = "user_ImageProfile": "6219bc9ba8a68a763a9ae90e.png"\n
+    icon_name = "user_Picture": "6219bc9ba8a68a763a9ae90e.png"\n
     or\n
     icon_name = "/app/proj/app_001/platform/icon_users/6219bc9ba8a68a763a9ae90e.png"
     """
