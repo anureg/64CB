@@ -38,17 +38,21 @@ path_ImageProfile = "/app/proj/app_001/platform/icon_users/"
 class login_req(BaseModel):
     username: str
     password: str
+
     device_id: str
 
 
 class login_res(BaseModel):
     status_login: str
-    token: Union[int, None] = None
-    user_id: Union[str, None] = None
-    user_Username: Union[str, None] = None
-    user_Name: Union[str, None] = None
-    user_Surname: Union[str, None] = None
-    user_ImageProfile: Union[str, None] = None
+
+    token: int
+
+    id: str
+    user_Username: str
+
+    user_Firstname: Union[str, None] = None
+    user_Lastname: Union[str, None] = None
+    user_Picture: Union[str, None] = None
 
 
 @router.post("/", response_model=login_res, response_model_exclude_unset=True)
@@ -56,8 +60,8 @@ async def login_platform(login: login_req):
     """
     user login\n
     {
-        "user_Username": "name1",
-        "user_Password": "pass1"
+        "username": "name1",
+        "password": "pass1"
     }
     """
 
