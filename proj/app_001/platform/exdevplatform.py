@@ -16,7 +16,7 @@ router = APIRouter(
 )
 
 
-def GenToken(id):
+def create_token(id):
     # Time zone in Thailand UTC+7
     tz = timezone(timedelta(hours=7))
     # Create a date object with given timezone
@@ -36,48 +36,50 @@ path_ImageProfile = "/app/proj/app_001/platform/icon_users/"
 
 
 class login_req(BaseModel):
-    username: str
-    password: str
+    login_UUID: str
 
-    device_id: str
+    login_Username: str
+    login_Password: str
 
 
 class login_res(BaseModel):
-    status_login: str
+    login_Status: str  # success, not found, error
 
-    token: int
+    login_Token: Union[int, None] = None
 
-    id: str
-    user_Username: str
+    user_id: Union[str, None] = None
 
     user_Firstname: Union[str, None] = None
     user_Lastname: Union[str, None] = None
-    user_Picture: Union[str, None] = None
+    user_ImageProfile: Union[str, None] = None
 
 
 @router.post("/", response_model=login_res, response_model_exclude_unset=True)
 async def login_platform(login: login_req):
     """
-    user login\n
+    username, password login\n
     {
-        "username": "name1",
-        "password": "pass1"
+        "login_Username": "name1",
+        "login_Password": "pass1"
     }
     """
 
     fake_db_users = load_json("fake_db_users.json")
     for item in fake_db_users:
-        if (
-            login.username != item["user_Username"]
-            or login.password != item["user_Password"]
-        ):
+
+        if not (login.login_Username == item["user_Username"]):
             raise HTTPException(status_code=404, detail="Not found")
+        elif (
+            login.login_Username != item["user_Username"]
+            or login.login_Username != item["user_Password"]
+        ):
+            raise HTTPException(status_code=404, detail="error")
         else:
             user = item
 
-            user["status_login"] = "Success"
-            user["id"] = str(user["_id"])
-            user["token"] = GenToken(id=login.device_id)
+            user["login_Status"] = "Success"
+            user["user_id"] = str(user["_id"])
+            user["login_Token"] = create_token(id=login.login_UUID)
 
             return user
 
