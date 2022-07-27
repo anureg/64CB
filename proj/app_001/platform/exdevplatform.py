@@ -65,17 +65,20 @@ async def login_platform(login: login_req):
     """
 
     fake_db_users = load_json("fake_db_users.json")
-    for item in fake_db_users:
-        if login.login_Username == item["user_Username"]:
-            user = item
-        else:
-            user = None
+    user = next(
+        (
+            item
+            for item in fake_db_users
+            if item["user_Username"] == login.login_Username
+        ),
+        None,
+    )
 
     if not user:
         raise HTTPException(status_code=404, detail="Not found")
-    elif (
-        login.login_Username != user["user_Username"]
-        or login.login_Password != user["user_Password"]
+    elif not (
+        login.login_Username == user["user_Username"]
+        and login.login_Password == user["user_Password"]
     ):
         raise HTTPException(status_code=404, detail="error")
     else:
@@ -84,6 +87,14 @@ async def login_platform(login: login_req):
         user["login_Token"] = create_token(id=login.login_UUID)
 
         return user
+
+
+@router.post("/ver")
+async def verify_user():
+    return
+
+
+# login verif
 
 
 @router.get("/GetIcon")
