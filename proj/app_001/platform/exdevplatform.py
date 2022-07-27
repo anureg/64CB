@@ -71,19 +71,19 @@ async def login_platform(login: login_req):
         else:
             user = None
 
-        if not user:
-            raise HTTPException(status_code=404, detail="Not found")
-        elif (
-            login.login_Username != user["user_Username"]
-            or login.login_Password != user["user_Password"]
-        ):
-            raise HTTPException(status_code=404, detail="error")
-        else:
-            user["login_Status"] = "Success"
-            user["user_id"] = str(user["_id"])
-            user["login_Token"] = create_token(id=login.login_UUID)
+    if not user:
+        raise HTTPException(status_code=404, detail="Not found")
+    elif (
+        login.login_Username != user["user_Username"]
+        or login.login_Password != user["user_Password"]
+    ):
+        raise HTTPException(status_code=404, detail="error")
+    else:
+        user["login_Status"] = "Success"
+        user["user_id"] = str(user["_id"])
+        user["login_Token"] = create_token(id=login.login_UUID)
 
-        return user
+    return user
 
 
 @router.get("/GetIcon")
