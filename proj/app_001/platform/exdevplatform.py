@@ -77,6 +77,8 @@ async def login_platform(login: login_req):
                 user["login_Status"] = "Success"
                 user["user_id"] = str(user["_id"])
                 user["login_Token"] = create_token(id=login.login_UUID)
+
+                return user
         else:
             raise HTTPException(status_code=404, detail="Not found")
 
@@ -91,8 +93,6 @@ async def login_platform(login: login_req):
         #     user["login_Status"] = "Success"
         #     user["user_id"] = str(user["_id"])
         #     user["login_Token"] = create_token(id=login.login_UUID)
-
-    return user
 
 
 @router.get("/GetIcon")
