@@ -56,7 +56,7 @@ async def login_platform(login: login_req):
     """
     user login\n
     {
-        "user_Username": "uname1",
+        "user_Username": "name1",
         "user_Password": "pass1"
     }
     """
@@ -77,9 +77,9 @@ async def login_platform(login: login_req):
                 "token": int(token),
                 "user_id": str(user["_id"]),
                 "user_Username": str(user["user_Username"]),
-                "user_Name": str(user["user_Name"]),
-                "user_Surname": str(user["user_Surname"]),
-                "user_ImageProfile": str(user["user_ImageProfile"]),
+                "user_Name": str(user["user_Firstname"]),
+                "user_Surname": str(user["user_Lastname"]),
+                "user_ImageProfile": str(user["user_Picture"]),
             }
 
 
