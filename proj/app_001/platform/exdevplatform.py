@@ -66,19 +66,16 @@ async def login_platform(login: login_req):
 
     fake_db_users = load_json("fake_db_users.json")
     for item in fake_db_users:
-        if login.login_Username == item["user_Username"]:
-            user = item
-        else:
-            user = None
 
-        if not user:
+        if not item:
             raise HTTPException(status_code=404, detail="Not found")
         elif (
-            login.login_Username != user["user_Username"]
-            or login.login_Password != user["user_Password"]
+            login.login_Username != item["user_Username"]
+            or login.login_Password != item["user_Password"]
         ):
             raise HTTPException(status_code=404, detail="error")
         else:
+            user = item
             user["login_Status"] = "Success"
             user["user_id"] = str(user["_id"])
             user["login_Token"] = create_token(id=login.login_UUID)
