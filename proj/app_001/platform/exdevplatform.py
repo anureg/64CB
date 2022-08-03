@@ -100,9 +100,9 @@ async def verify_user():
 @router.get("/GetIcon")
 def get_Icon(icon_name: str):
     """
-    icon_name = "user_Picture": "6219bc9ba8a68a763a9ae90e.png"\n
+    icon_name = "user_Picture": "11001.png"\n
     or\n
-    icon_name = "/app/proj/app_001/platform/icon_users/6219bc9ba8a68a763a9ae90e.png"
+    icon_name = "/app/proj/app_001/platform/icon_users/11001.png"
     """
 
     file_path = os.path.join(path_ImageProfile, icon_name)

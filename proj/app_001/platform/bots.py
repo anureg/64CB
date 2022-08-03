@@ -10,21 +10,21 @@ router = APIRouter(
 
 fake_res_bot_list = [
     {
-        "id": "62afee6ce854c9d406b5815f",
+        "id": "14001",
         "Bot_Name": "bot1",
-        "Bot_Picture_Name": "62afee6ce854c9d406b5815f.png",
+        "Bot_Picture_Name": "14001.png",
         "Bot_Status": "False",
     },
     {
-        "id": "62afee98e854c9d406b58160",
+        "id": "14002",
         "Bot_Name": "bot2",
-        "Bot_Picture_Name": "62afee98e854c9d406b58160.png",
+        "Bot_Picture_Name": "14002.png",
         "Bot_Status": "False",
     },
     {
-        "id": "62afeea5e854c9d406b58161",
+        "id": "14003",
         "Bot_Name": "bot3",
-        "Bot_Picture_Name": "62afeea5e854c9d406b58161.png",
+        "Bot_Picture_Name": "14003.png",
         "Bot_Status": "False",
     },
 ]
@@ -102,13 +102,13 @@ def get_bot_unit(id: str):
     # read one
     """
     find by id\n
-    id = "62afee6ce854c9d406b5815f"
+    id = "14001"
     """
     res = [
         {
-            "id": "62afee6ce854c9d406b5815f",
+            "id": "14001",
             "Bot_Name": "bot1",
-            "Bot_Picture_Name": "62afee6ce854c9d406b5815f.png",
+            "Bot_Picture_Name": "14001.png",
             "Bot_Status": "False",
         },
     ]
@@ -121,31 +121,31 @@ def update_bot_unit(bot: Bot):
     # update one
     """
     {
-        "id": "62afee6ce854c9d406b5815f",
+        "id": "14001",
         "Bot_Name": "bot1",
-        "Bot_Picture_Name": "62afee6ce854c9d406b5815f.png",
+        "Bot_Picture_Name": "14001.png",
         "Bot_Status": "False",
         "description": "แก้ไขข้อมูลเรียบร้อย",
     }
     """
     res = [
         {
-            "id": "62afee6ce854c9d406b5815f",
+            "id": "14001",
             "Bot_Name": "bot1",
-            "Bot_Picture_Name": "62afee6ce854c9d406b5815f.png",
+            "Bot_Picture_Name": "14001.png",
             "Bot_Status": "False",
             "description": "แก้ไขข้อมูลเรียบร้อย",
         },
         {
-            "id": "62afee98e854c9d406b58160",
+            "id": "14002",
             "Bot_Name": "bot2",
-            "Bot_Picture_Name": "62afee98e854c9d406b58160.png",
+            "Bot_Picture_Name": "14002.png",
             "Bot_Status": "False",
         },
         {
-            "id": "62afeea5e854c9d406b58161",
+            "id": "14003",
             "Bot_Name": "bot3",
-            "Bot_Picture_Name": "62afeea5e854c9d406b58161.png",
+            "Bot_Picture_Name": "14003.png",
             "Bot_Status": "False",
         },
     ]
