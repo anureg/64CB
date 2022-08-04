@@ -1,7 +1,3 @@
-from email import message
-from uuid import UUID
-from matplotlib.pyplot import cla
-from matplotlib.style import context
 from fastapi import APIRouter
 
 from fastapi.responses import FileResponse
@@ -11,14 +7,6 @@ from pydantic import BaseModel
 from typing import Union
 
 from datetime import datetime, timezone, timedelta
-
-
-# chat_msg_req
-class Chat_Msg_req(BaseModel):
-    message: str
-    device_token: str
-
-    contextSend: Union[str, None] = None
 
 
 # button
@@ -72,9 +60,7 @@ def welcome(device_id: str):
 
 
 @router.get("/ChatMsg")
-def chat_msg(msgSend: Chat_Msg_req):
-    msg = msgSend.message
-    device_token = msgSend.device_token
+def chat_msg(msg: str, device_token: int, contextSend: str):
 
     if msg == "text":
         contextAns = [
@@ -199,3 +185,11 @@ def get_file(file_name: str, device_token: int):
     if os.path.exists(file_path):
         return FileResponse(file_path)
     return {"error": "File not found!"}
+
+class Test(BaseModel):
+    test:str
+
+@router.get("/test")
+def get_test(xx: Test):
+    y = xx.test
+    return y
