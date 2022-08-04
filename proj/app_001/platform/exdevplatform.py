@@ -85,6 +85,7 @@ async def login_platform(login: login_req):
         user["login_Status"] = "Success"
         user["user_id"] = str(user["_id"])
         user["login_Token"] = create_token(id=login.login_UUID)
+        print(user["login_Token"])
 
         return user
 
