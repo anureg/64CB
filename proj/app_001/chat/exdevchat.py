@@ -1,7 +1,9 @@
-from fastapi import APIRouter
-
-from fastapi.responses import FileResponse
 import os
+import json
+
+from fastapi import APIRouter
+from fastapi.responses import FileResponse
+
 
 from pydantic import BaseModel
 from typing import Union
@@ -186,10 +188,22 @@ def get_file(file_name: str, device_token: int):
         return FileResponse(file_path)
     return {"error": "File not found!"}
 
-class Test(BaseModel):
-    test:str
 
-@router.get("/test")
-def get_test(xx: Test):
-    y = xx.test
-    return y
+def load_json(filename: str):
+    with open(f"/app/proj/app_001/platform/fake_db/{filename}") as json_file:
+        js_file = json.load(json_file)
+        return js_file
+
+
+@router.get("/ChatHistpry")
+def chathis(token: str):
+    fake_db_chat_history = load_json("fake_db_chat_history.json")
+    lst_ch_his = []
+    for item in fake_db_chat_history:
+        if item["Chat_Token"] == token:
+            lst_ch_his.append(item)
+        else:
+            pass
+    print(lst_ch_his)
+
+    return lst_ch_his

@@ -45,13 +45,13 @@ class login_req(BaseModel):
 class login_res(BaseModel):
     login_Status: str  # success, not found, error
 
-    login_Token: Union[int, None] = None
+    login_Token: Union[str, None] = None
 
     user_id: Union[str, None] = None
 
     user_Firstname: Union[str, None] = None
     user_Lastname: Union[str, None] = None
-    user_ImageProfile: Union[str, None] = None
+    user_Picture: Union[str, None] = None
 
 
 @router.post("/", response_model=login_res, response_model_exclude_unset=True)

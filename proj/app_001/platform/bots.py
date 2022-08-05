@@ -12,18 +12,21 @@ fake_res_bot_list = [
     {
         "id": "14001",
         "Bot_Name": "bot1",
+        "Bot_Description": "รายละเอียด bot1 รายละเอียด bot1 รายละเอียด bot1 รายละเอียด bot1 รายละเอียด bot1",
         "Bot_Picture_Name": "14001.png",
         "Bot_Status": "False",
     },
     {
         "id": "14002",
         "Bot_Name": "bot2",
+        "Bot_Description": "รายละเอียด bot2",
         "Bot_Picture_Name": "14002.png",
         "Bot_Status": "False",
     },
     {
         "id": "14003",
         "Bot_Name": "bot3",
+        "Bot_Description": "รายละเอียด bot3",
         "Bot_Picture_Name": "14003.png",
         "Bot_Status": "False",
     },
@@ -33,9 +36,9 @@ fake_res_bot_list = [
 class Bot(BaseModel):
     id: str
     Bot_Name: str
+    Bot_Description: Union[str, None] = None
     Bot_Picture_Name: str
     Bot_Status: bool
-    description: Union[str, None] = None
 
 
 class CreateBot(BaseModel):
@@ -43,7 +46,7 @@ class CreateBot(BaseModel):
     Bot_Name: str
     # Bot_Picture_Name: str  # ตอนสร้าง bot ใหม่ เอา id มาเป็นชื่อ
     # Bot_Status: False  # ตอนสร้าง bot ใหม่ ตั้งให้เป็น false
-    description: Union[str, None] = None
+    Bot_Description: Union[str, None] = None
 
 
 @router.get("/list", tags=["Bot List"], response_model=list[Bot])
@@ -80,18 +83,18 @@ def create_bot_unit(bot: CreateBot):
     # create
     """
     {
-        "Bot_Name": "created",
-        "description": "เพิ่มข้อมูลเรียบร้อยแล้วจ้า",
+        "Bot_Name": "bot4",
+        "Bot_Description": "รายละเอียด bot4",
     }
     """
     res = fake_res_bot_list + [
         {
-            "id": "mongo gen id",
-            "Bot_Name": "created",
+            "id": "14004",
+            "Bot_Name": "bot4",
+            "Bot_Description": "รายละเอียด bot4",
+            "Bot_Picture_Name": "14004.png",
             "Bot_Status": "False",
-            "Bot_Picture_Name": "mongo gen id.png",
-            "description": "เพิ่มข้อมูลเรียบร้อยแล้วจ้า",
-        }
+        },
     ]
 
     return res
