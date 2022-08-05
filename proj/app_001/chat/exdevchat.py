@@ -195,15 +195,20 @@ def load_json(filename: str):
         return js_file
 
 
-@router.get("/ChatHistpry")
-def chathis(token: str):
-    fake_db_chat_history = load_json("fake_db_chat_history.json")
+@router.get("/ChatHistory")
+async def ChatHistory(token: str):
+    """
+    token = "1781216199095530193"\n
+    or\n
+    token = "-6227619807769116323"
+    """
     lst_ch_his = []
+
+    fake_db_chat_history = load_json("fake_db_chat_history.json")
     for item in fake_db_chat_history:
         if item["Chat_Token"] == token:
             lst_ch_his.append(item)
-        else:
-            pass
+
     print(lst_ch_his)
 
     return lst_ch_his
