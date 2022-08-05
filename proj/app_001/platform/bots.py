@@ -65,7 +65,22 @@ def delete_bot_unit_list(listId: list[str]):
     or\n
     listId = ["1"]
     """
-    res = fake_res_bot_list.pop()
+    res = [
+        {
+            "id": "14001",
+            "Bot_Name": "bot1",
+            "Bot_Description": "รายละเอียด bot1 รายละเอียด bot1 รายละเอียด bot1 รายละเอียด bot1 รายละเอียด bot1",
+            "Bot_Picture_Name": "14001.png",
+            "Bot_Status": "False",
+        },
+        {
+            "id": "14002",
+            "Bot_Name": "bot2",
+            "Bot_Description": "รายละเอียด bot2",
+            "Bot_Picture_Name": "14002.png",
+            "Bot_Status": "False",
+        },
+    ]
 
     return res
 
