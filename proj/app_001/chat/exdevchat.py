@@ -206,11 +206,7 @@ async def ChatHistory(token: str):
 
     fake_db_chat_historys = load_json("fake_db_chat_historys.json")
     for item in fake_db_chat_historys:
-        print(item)
-        print(item["Chat_Token"])
         if item["Chat_Token"] == token:
             lst_ch_his.append(item)
-
-    print(lst_ch_his)
 
     return lst_ch_his
