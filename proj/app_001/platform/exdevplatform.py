@@ -27,7 +27,7 @@ def create_token(id):
 
 
 def load_json(filename: str):
-    with open(f"/app/proj/app_001/platform/fake_db/{filename}") as json_file:
+    with open(f"/app/proj/app_001/fake_db/{filename}") as json_file:
         js_file = json.load(json_file)
         return js_file
 

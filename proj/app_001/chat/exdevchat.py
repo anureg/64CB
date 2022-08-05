@@ -190,7 +190,7 @@ def get_file(file_name: str, device_token: int):
 
 
 def load_json(filename: str):
-    with open(f"/app/proj/app_001/platform/fake_db/{filename}") as json_file:
+    with open(f"/app/proj/app_001/fake_db/{filename}") as json_file:
         js_file = json.load(json_file)
         return js_file
 
@@ -204,8 +204,8 @@ async def ChatHistory(token: str):
     """
     lst_ch_his = []
 
-    fake_db_chat_history = load_json("fake_db_chat_history.json")
-    for item in fake_db_chat_history:
+    fake_db_chat_historys = load_json("fake_db_chat_historys.json")
+    for item in fake_db_chat_historys:
         if item["Chat_Token"] == token:
             lst_ch_his.append(item)
 
