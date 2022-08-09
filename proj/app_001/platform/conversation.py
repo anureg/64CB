@@ -71,6 +71,7 @@ fake_res_conversation_list = [
 class Conversation(BaseModel):
     id: str
     Conversation_Name: str
+    Conversation_BotID: str
     Conversation_Description: Union[str, None] = None
 
 
@@ -211,7 +212,7 @@ def create_conversation_unit(conversation: CreateConver):
                 "ดูดข้อมูล",
             ],
             "Conversation_Outgoing": ["ร้องเรียน", "แจ้งเบาะแส", "ร้องทุกข์"],
-            "Conversation_Description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส",
+            "Conversation_Description": "คำอธิบาย xxx",
         },
     ]
 
@@ -290,7 +291,7 @@ def update_conversation_unit(conversation: Conversation):
         {
             "id": "13003",
             "Conversation_BotID": "14001",
-            "Conversation_Name": "02-2-3-บริการ-ร้องเรียน ร้องทุกข์ แจ้งเบาะแสxxx",
+            "Conversation_Name": "02-2-3-บริการ-ร้องเรียน ร้องทุกข์ แจ้งเบาะแส xxx",
             "Conversation_Tag": "บริการ",
             "Conversation_Incoming": [
                 "ขอความเป็นธรรม",
@@ -305,7 +306,7 @@ def update_conversation_unit(conversation: Conversation):
                 "ดูดข้อมูล",
             ],
             "Conversation_Outgoing": ["ร้องเรียน", "แจ้งเบาะแส", "ร้องทุกข์"],
-            "Conversation_Description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแสxxx",
+            "Conversation_Description": "บริการ ร้องเรียน ร้อทุกข์ แจ้งเบาะแส xxx",
         },
     ]
 
