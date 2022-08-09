@@ -133,7 +133,7 @@ def update_bot_unit(bot: Bot):
     {
         "id": "14001",
         "Bot_Name": "bot1",
-        "Bot_Description": "รายละเอียด bot1 แบบแก้ไข",
+        "Bot_Description": "รายละเอียด bot1",
         "Bot_Picture_Name": "14001.png",
         "Bot_Status": "False",
     }
@@ -142,7 +142,7 @@ def update_bot_unit(bot: Bot):
         {
             "id": "14001",
             "Bot_Name": "bot1",
-            "Bot_Description": "รายละเอียด bot1 แบบแก้ไข",
+            "Bot_Description": "รายละเอียด bot1",
             "Bot_Picture_Name": "14001.png",
             "Bot_Status": "False",
         },

@@ -62,7 +62,7 @@ def welcome(device_id: str):
 
 
 @router.get("/ChatMsg")
-def chat_msg(msg: str, device_token: int, contextSend: str):
+def chat_msg(msg: str, device_token: str, contextSend: str):
 
     if msg == "text":
         contextAns = [

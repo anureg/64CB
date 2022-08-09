@@ -92,10 +92,8 @@ async def login_platform(login: login_req):
 
 @router.post("/ver")
 async def verify_user():
+    # login verif
     return
-
-
-# login verif
 
 
 @router.get("/GetIcon")
